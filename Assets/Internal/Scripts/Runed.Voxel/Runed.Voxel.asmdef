@@ -1,0 +1,10 @@
+{
+    "name": "Runed.Voxel",
+    "references": [
+        "Runed.Utilities"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
