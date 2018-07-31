@@ -16,7 +16,7 @@ namespace Runed.Voxel
             if (this.a == 100)
             {
                 BlockManager.Initialize();
-                Debug.Log(BlockManager.SaveBlockTypes());
+                Debug.Log(BlockManager.Export());
                 this.a = 0;
             }
         }
