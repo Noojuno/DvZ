@@ -1,0 +1,10 @@
+{
+    "name": "DvZ.Core",
+    "references": [
+        "Runed.Voxel"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

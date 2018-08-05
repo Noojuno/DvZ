@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Runed.Voxel
 {
-    public class BlockType
+    public class BlockDefinition
     {
         public virtual string Identifier { get; }
         public virtual string DisplayName { get; }

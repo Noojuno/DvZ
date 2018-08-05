@@ -3,6 +3,12 @@
     public struct Block
     {
         public Chunk Chunk { get; }
-        public int Id;
+        public BlockDefinition Definition { get; }
+
+        public Block(BlockDefinition definition)
+        {
+            this.Definition = definition;
+            this.Chunk = null;
+        }
     }
 }

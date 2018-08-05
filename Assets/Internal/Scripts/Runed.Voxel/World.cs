@@ -2,8 +2,9 @@
 {
     public class World
     {
-        
+        public void Update()
+        {
 
-
+        }
     }
 }

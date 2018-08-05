@@ -9,6 +9,13 @@ namespace Runed.Voxel
 
         private Block[,,] _blocks;
 
+        /// <summary>
+        /// Gets the block at the given index.
+        /// </summary>
+        /// <param name="x">The x coordinate of the block</param>
+        /// <param name="y">The y coordinate of the block</param>
+        /// <param name="z">The z coordinate of the block</param>
+        /// <returns></returns>
         public Block this[int x, int y, int z]
         {
             get

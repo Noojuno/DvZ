@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Runed.Voxel;
 using UnityEngine;
 
-namespace Runed.Voxel
+namespace DvZ.Core
 {
     public class Test : MonoBehaviour
     {
-        public int a = 0;
-
         public void Update()
         {
-            if (this.a == 100)
+            if (Input.GetKeyUp(KeyCode.Alpha1))
             {
                 BlockManager.Initialize();
                 Debug.Log(BlockManager.Export());
-                this.a = 0;
             }
         }
     }
