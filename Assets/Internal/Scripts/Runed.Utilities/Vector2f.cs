@@ -63,7 +63,7 @@ namespace Runed.Utilities
         public static bool operator ==(Vector2f a, Vector2f b)
         {
             return a.X == b.X &&
-                   a.Y == b.Y 
+                   a.Y == b.Y;
         }
 
         public static bool operator !=(Vector2f a, Vector2f b)
@@ -127,7 +127,7 @@ namespace Runed.Utilities
             return new Vector2(a.X * b.x, a.Y * b.y);
         }
 
-        public static explicit operator Vector3(Vector2f v)
+        public static explicit operator Vector2(Vector2f v)
         {
             return new Vector2(v.X, v.Y);
         }

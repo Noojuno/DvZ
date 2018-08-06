@@ -13,7 +13,7 @@ namespace Runed.Voxel
         protected List<List<int>> triangles = new List<List<int>>();
 
         [SerializeField]
-        protected List<Vector2> uv = new List<Vector2>();
+        protected List<Vector2f> uv = new List<Vector2f>();
 
         [SerializeField]
         protected List<Vector3f> vertices = new List<Vector3f>();
@@ -49,7 +49,7 @@ namespace Runed.Voxel
 
         public virtual List<List<int>> Triangles => this.triangles;
 
-        public virtual List<Vector2> UV => this.uv;
+        public virtual List<Vector2f> UV => this.uv;
 
         public virtual void AddVertex(Vector3f vertex)
         {
@@ -62,7 +62,7 @@ namespace Runed.Voxel
             this.triangles[subMesh].Add(triangle);
         }
 
-        public virtual void AddUV(Vector2 uv)
+        public virtual void AddUV(Vector2f uv)
         {
             this.uv.Add(uv);
         }
@@ -135,10 +135,10 @@ namespace Runed.Voxel
             this.triangles[subMesh].Add(this.vertices.Count - 3);
             this.triangles[subMesh].Add(this.vertices.Count - 1);
             this.triangles[subMesh].Add(this.vertices.Count - 2);
-            this.uv.Add(new Vector2(uv.x + uv.width, uv.y));
-            this.uv.Add(new Vector2(uv.x, uv.y));
-            this.uv.Add(new Vector2(uv.x + uv.width, uv.y + uv.height));
-            this.uv.Add(new Vector2(uv.x, uv.y + uv.height));
+            this.uv.Add(new Vector2f(uv.x + uv.width, uv.y));
+            this.uv.Add(new Vector2f(uv.x, uv.y));
+            this.uv.Add(new Vector2f(uv.x + uv.width, uv.y + uv.height));
+            this.uv.Add(new Vector2f(uv.x, uv.y + uv.height));
         }
 
         public virtual Mesh BuildMesh()
@@ -147,7 +147,7 @@ namespace Runed.Voxel
             mesh.subMeshCount = this.triangles.Count;
             mesh.vertices = this.vertices.Cast<Vector3>().ToArray();
             for (var i = 0; i < this.triangles.Count; i++) mesh.SetTriangles(this.triangles[i], i, true);
-            mesh.uv = this.uv.ToArray();
+            mesh.uv = this.uv.Cast<Vector2>().ToArray();
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
             mesh.RecalculateTangents();
