@@ -18,6 +18,7 @@ namespace Runed.Voxel
         public Chunk(World world)
         {
             this.World = world;
+
         }
 
         public void Update()
