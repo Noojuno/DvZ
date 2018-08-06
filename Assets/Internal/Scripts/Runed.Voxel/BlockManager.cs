@@ -43,6 +43,11 @@ namespace Runed.Voxel
             return BlockManager.BlockTypes[id];
         }
 
+        public static string[] Load()
+        {
+            return new []{"69;blocktesttwo"}; 
+        }
+
         public static string Export()
         {
             var list = BlockTypes.Select(kv => $"{kv.Key};{kv.Value.Identifier}").ToArray();

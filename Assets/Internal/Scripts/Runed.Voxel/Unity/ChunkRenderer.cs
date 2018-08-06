@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 
-namespace Runed.Voxel
+namespace Runed.Voxel.Unity
 {
-    [RequireComponent(typeof(Mesh), typeof(MeshRenderer))]
+    [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class ChunkRenderer : MonoBehaviour
     {
         public Chunk Chunk;
         public MeshRenderer meshRenderer;
-        public Mesh mesh;
+        public MeshFilter meshFilter;
 
         // Use this for initialization
         private void Start()
         {
-            this.mesh = this.GetComponent<Mesh>();
+            this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();
         }
 
@@ -21,7 +21,7 @@ namespace Runed.Voxel
         {
             if (this.Chunk != null && this.Chunk.Dirty)
             {
-                //this.Chunk.Update();
+                this.Chunk.Update();
             }
         }
     }

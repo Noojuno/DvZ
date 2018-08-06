@@ -15,7 +15,12 @@ namespace Runed.Voxel
         // PRIVATE VARIABLES
         private Block[,,] _blocks;
 
-        public Chunk()
+        public Chunk(World world)
+        {
+            this.World = world;
+        }
+
+        public void Update()
         {
 
         }
