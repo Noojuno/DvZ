@@ -1,13 +1,24 @@
 ﻿using System;
-using Runed.Utilities;
+using UnityEngine;
 
 namespace Runed.Voxel
 {
     public sealed class Chunk
     {
+        // STATIC VARIABLES
         public static int Size = 16;
 
+        // PUBLIC VARIABLES
+        public World World;
+        public bool Dirty = true;
+
+        // PRIVATE VARIABLES
         private Block[,,] _blocks;
+
+        public Chunk()
+        {
+
+        }
 
         /// <summary>
         /// Gets the block at the given index.
@@ -43,7 +54,7 @@ namespace Runed.Voxel
         /// </summary>
         /// <param name="index">The index as a Vector3i.</param>
         /// <returns></returns>
-        public Block this[Vector3i index] => this[(int)index.X, (int)index.Y, (int)index.Z];
+        public Block this[Vector3 index] => this[(int)index.x, (int)index.y, (int)index.z];
 
     }
 }

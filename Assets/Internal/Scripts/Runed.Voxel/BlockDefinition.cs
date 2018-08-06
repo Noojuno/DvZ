@@ -10,5 +10,7 @@ namespace Runed.Voxel
     {
         public virtual string Identifier { get; }
         public virtual string DisplayName { get; }
+
+        public virtual bool HasCustomModel { get; }
     }
 }
