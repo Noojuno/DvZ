@@ -12,5 +12,5 @@ namespace Runed.UI
         {
             return a.ToString() == b.ToString();
         }
-    }S
+    }
 }
