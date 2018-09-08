@@ -8,6 +8,7 @@ namespace Runed.Voxel.Unity
         public Chunk Chunk;
         public MeshRenderer meshRenderer;
         public MeshFilter meshFilter;
+        public Mesh mesh;
 
         // Use this for initialization
         private void Start()
