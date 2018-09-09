@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Runed.Voxel
@@ -15,7 +14,7 @@ namespace Runed.Voxel
         {
             BlockManager.BlockTypes = new Dictionary<int, BlockDefinition>();
 
-            string[] list = {"69;blocktesttwo"};
+            string[] list = BlockManager.Load();
 
             var blockDefinitions = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(x => x.GetTypes().Where(y => y.IsClass && y.BaseType == typeof(BlockDefinition)))
@@ -50,9 +49,11 @@ namespace Runed.Voxel
 
         public static string Export()
         {
-            var list = BlockTypes.Select(kv => $"{kv.Key};{kv.Value.Identifier}").ToArray();
+            /* var list = BlockTypes.Select(kv => $"{kv.Key};{kv.Value.Identifier}").ToArray();
             var json = JsonConvert.SerializeObject(list);
-            return json;
+            return json; */
+
+            return "";
         }
     }
 }

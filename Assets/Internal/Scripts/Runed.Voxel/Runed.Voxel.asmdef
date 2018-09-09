@@ -1,8 +1,7 @@
 {
     "name": "Runed.Voxel",
     "references": [
-        "Runed.Utilities",
-        "FastNoise.SIMD"
+        "Runed.Utilities"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

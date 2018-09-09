@@ -1,8 +1,0 @@
-{
-    "name": "FastNoise.SIMD",
-    "references": [],
-    "optionalUnityReferences": [],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false
-}
