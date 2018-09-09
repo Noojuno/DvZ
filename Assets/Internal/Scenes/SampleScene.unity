@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 2027186496}
   - component: {fileID: 2027186500}
   - component: {fileID: 2027186499}
+  - component: {fileID: 2027186498}
   - component: {fileID: 2027186497}
   m_Layer: 0
   m_Name: Chunk
@@ -335,11 +336,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2027186495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd7a67daef911944f94e3159e1de8384, type: 3}
+  m_Script: {fileID: 11500000, guid: 90b0a18ba91bb3349b35c20863737649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  meshFilter: {fileID: 0}
+  Dirty: 0
+--- !u!114 &2027186498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2027186495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf10cdea1344482e91a4f2b58506b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &2027186499
 MeshRenderer:
   m_ObjectHideFlags: 0

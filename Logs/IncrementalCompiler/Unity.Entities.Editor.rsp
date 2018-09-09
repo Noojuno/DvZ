@@ -2,12 +2,15 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:E:/Projects/Games/DvZ/Temp/Unity.Entities.dll
+-out:E:/Projects/Games/DvZ/Temp/Unity.Entities.Editor.dll
 -nostdlib
 -unsafe
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Collections.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Burst.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Hybrid.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Properties.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Mathematics.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Collections.dll
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.AIModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -41,6 +44,7 @@
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.ProfilerModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll"
+-r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.SpatialTrackingModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.StreamingModule.dll"
@@ -312,61 +316,27 @@
 -d:UNITY_TEAM_LICENSE
 -d:ENABLE_VSTU
 -d:UNITY_POST_PROCESSING_STACK_V2
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/AlwaysUpdateSystemAttribute.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ArchetypeManager.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/AssemblyInfo.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/BinarySerialization.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ChangeVersionUtility.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ChunkAllocator.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ChunkDataUtility.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ChunkListMap.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ComponentJobManager.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ComponentSystem.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/CopyUtility.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/DisallowRefReturnCrossingThisAttribute.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/EndFrameBarrier.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/EntityCommandBuffer.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/EntityDataManager.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/EntityManager.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/EntityRemapUtility.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ExclusiveEntityTransaction.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/HashUtility.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/IComponentData.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/IJobProcessComponentData.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Injection/ComponentSystemInjection.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Injection/InjectAttribute.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Injection/InjectComponentFromEntity.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Injection/InjectComponentGroup.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Injection/InjectionData.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Injection/InjectionHook.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Injection/World.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Injection/WorldDebuggingTools.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/ArchetypeChunkArray.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/BufferArray.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/BufferFromEntity.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/ComponentChunkIterator.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/ComponentDataArray.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/ComponentDataFromEntity.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/ComponentGroup.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/ComponentGroupArray.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/DynamicBuffer.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/EntityArray.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/EntityGroupManager.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Iterators/SharedComponentDataArray.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/SceneViewWorldPositionAttribute.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ScriptBehaviourManager.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/ScriptBehaviourUpdateOrder.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/SerializeUtility.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/SharedComponentManager.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/SortingUtilities.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Stubs/Unity.Assertions/Assert.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Stubs/Unity/Debug.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Stubs/Unity/ProfilerMarker.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Types/BufferHeader.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Types/CalculateReaderWriterDependency.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Types/ComponentType.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Types/FastEquality.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Types/TypeManager.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/Types/VoidSystemComponent.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities/UnsafeLinkedListNode.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/AssemblyInfo.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/ComponentDataWrapperBaseEditor.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/ComponentGroupGUI.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/ComponentGroupListView.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/ComponentTypeChooser.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/ComponentTypeFilterUI.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/ComponentTypeListView.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/EntityArrayListAdapter.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/EntityDebugger.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/EntityDebuggerStyles.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/EntityIMGUIVisitor.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/EntityListQuery.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/EntityListView.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/EntitySelectionProxy.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/EntitySelectionProxyEditor.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/SystemListView.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/EntityDebugger/WorldPopup.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/ExtraTypesProvider.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/GameObjectEntityEditor.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/GUIHelpers.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/GUIStyleAsset.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/SystemInclusionList.cs
+-i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.entities@0.0.12-preview.12/Unity.Entities.Editor/WrappedComponentDataDrawer.cs
 -v:0

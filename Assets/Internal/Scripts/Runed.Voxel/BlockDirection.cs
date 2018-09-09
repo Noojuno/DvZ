@@ -2,7 +2,6 @@
 {
     public enum BlockDirection
     {
-
         Forward,
         Back,
         Right,

@@ -1,7 +1,8 @@
 {
     "name": "Runed.Voxel",
     "references": [
-        "Runed.Utilities"
+        "Runed.Utilities",
+        "Unity.Entities"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

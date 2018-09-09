@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using Unity.Entities;
 
 namespace Runed.Voxel
 {
-    public sealed class Chunk
+    public class Chunk : MonoBehaviour
     {
         // STATIC VARIABLES
         public static int Size = 16;
@@ -18,12 +19,6 @@ namespace Runed.Voxel
         public Chunk(World world)
         {
             this.World = world;
-
-        }
-
-        public void Update()
-        {
-
         }
 
         /// <summary>
