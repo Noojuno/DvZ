@@ -5,8 +5,29 @@
 -out:E:/Projects/Games/DvZ/Temp/Assembly-CSharp.dll
 -nostdlib
 -unsafe
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Runed.UI.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Properties.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.Codegen.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Jobs.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Jobs.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Collections.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Burst.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Rendering.Hybrid.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.Editor.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/DvZ.Core.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Hybrid.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Mathematics.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Transforms.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Burst.Editor.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Runed.Voxel.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.TextMeshPro.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Transforms.Hybrid.dll
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.AIModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -69,27 +90,6 @@
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.XRModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEditor.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/Unity.Locator.dll"
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Runed.UI.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Properties.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.Codegen.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Jobs.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Jobs.Editor.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Editor.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Collections.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Burst.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Rendering.Hybrid.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.Editor.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Hybrid.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Mathematics.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Transforms.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Burst.Editor.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.TextMeshPro.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Transforms.Hybrid.dll
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
@@ -99,6 +99,7 @@
 -r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll
 -r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.collections@0.0.9-preview.4/System.Runtime.CompilerServices.Unsafe.dll
 -r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll
+-r:"E:/Projects/Games/DvZ/Assets/External/Plugins/Sirenix/Odin Serializer/EditorOnly/OdinSerializer.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Core.dll"
@@ -313,5 +314,5 @@
 -d:UNITY_TEAM_LICENSE
 -d:ENABLE_VSTU
 -d:UNITY_POST_PROCESSING_STACK_V2
--i:E:/Projects/Games/DvZ/Assets/External/Test.cs
+-i:"E:/Projects/Games/DvZ/Assets/External/Plugins/Sirenix/Odin Serializer/OdinBuildAutomation.cs"
 -v:0

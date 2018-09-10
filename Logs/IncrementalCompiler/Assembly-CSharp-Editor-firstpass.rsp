@@ -2,9 +2,33 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:E:/Projects/Games/DvZ/Temp/Unity.Burst.dll
+-out:E:/Projects/Games/DvZ/Temp/Assembly-CSharp-Editor-firstpass.dll
 -nostdlib
 -unsafe
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Runed.UI.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Properties.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.Codegen.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Jobs.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Jobs.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Collections.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Burst.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Rendering.Hybrid.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/DvZ.Core.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Hybrid.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Mathematics.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Transforms.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Burst.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Runed.Voxel.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.TextMeshPro.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Transforms.Hybrid.dll
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.AIModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -38,6 +62,7 @@
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.ProfilerModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll"
+-r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.SpatialTrackingModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.StreamingModule.dll"
@@ -69,6 +94,9 @@
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/Unity.Locator.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/Timeline/Editor/UnityEditor.Timeline.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll"
@@ -94,7 +122,7 @@
 -r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
 -r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll
 -r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
--r:"E:/Projects/Games/DvZ/Assets/External/Plugins/Sirenix/Odin Serializer/EditorOnly/OdinSerializer.dll"
+-r:"E:/Projects/Games/DvZ/Assets/Plugins/Sirenix/Odin Serializer/EditorOnly/OdinSerializer.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Core.dll"
@@ -309,6 +337,31 @@
 -d:UNITY_TEAM_LICENSE
 -d:ENABLE_VSTU
 -d:UNITY_POST_PROCESSING_STACK_V2
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.burst@0.2.4-preview.25/Runtime/BurstCompileAttribute.cs
--i:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.burst@0.2.4-preview.25/Runtime/BurstCompiler.cs
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Disposables.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/EnhancedHierarchy.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Enumerations.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/HierarchyInfo.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/Active.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/GameObjectIcon.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/IconBase.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/IconData.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/IconList.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/Layer.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/Lock.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/Memory.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/MonoBehaviourIcon.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/None.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/PrefabApply.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/SoundIcon.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/Static.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/Tag.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Icons/Warnings.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/LogEntry.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Preferences.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/PreferencesGUI.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/PrefItem.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/ProfilerSample.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/ReflectionHelper.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Styles.cs"
+-i:"E:/Projects/Games/DvZ/Assets/Plugins/Enhanced Hierarchy/Editor/Utility.cs"
 -v:0
