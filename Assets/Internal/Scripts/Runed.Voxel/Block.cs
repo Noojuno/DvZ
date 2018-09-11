@@ -2,7 +2,7 @@
 
 namespace Runed.Voxel
 {
-    public struct Block
+    public class Block
     {
         /* public Chunk Chunk { get; }
         public int Id { get; } */

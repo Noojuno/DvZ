@@ -37,6 +37,11 @@ namespace Runed.Voxel
             }
         }
 
+        public static BlockDefinition GetBlock(string identifier)
+        {
+            return BlockTypes.Values.First(x => x.Identifier == identifier);
+        }
+
         public static BlockDefinition GetBlock(int id)
         {
             return BlockManager.BlockTypes[id];
@@ -44,7 +49,7 @@ namespace Runed.Voxel
 
         public static string[] Load()
         {
-            return new []{"69;blocktesttwo"}; 
+            return new string[] { "0;air" };//{"0;blocktesttwo"}; 
         }
 
         public static string Export()

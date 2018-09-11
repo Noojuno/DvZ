@@ -4,7 +4,7 @@ using Unity.Entities;
 
 namespace Runed.Voxel
 {
-    public class Chunk : MonoBehaviour
+    public class Chunk
     {
         // STATIC VARIABLES
         public static int Size = 16;
@@ -14,11 +14,61 @@ namespace Runed.Voxel
         public bool Dirty = true;
 
         // PRIVATE VARIABLES
-        private Block[,,] _blocks;
+        public Block[,,] Blocks { get; set; }
 
         public Chunk(World world)
         {
             this.World = world;
+            this.Blocks = new Block[Chunk.Size, Chunk.Size, Chunk.Size];
+        }
+
+        public MeshData ToMeshData()
+        {
+            var meshData = new MeshData();
+
+            for (int x = 0; x < Chunk.Size; x++)
+            {
+                for (int y = 0; y < Chunk.Size; y++)
+                {
+                    for (int z = 0; z < Chunk.Size; z++)
+                    {
+                        if (this[x, y, z] != null && this[x, y, z].Definition.Render)
+                        {
+                            if (y + 1 < Chunk.Size && this[x, y + 1, z].Definition == BlockManager.GetBlock("air"))
+                            {
+                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Up, Rect.zero );
+                            }
+
+                            if (y - 1 >= 0 && this[x, y - 1, z].Definition == BlockManager.GetBlock("air"))
+                            {
+                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Down, Rect.zero);
+                            }
+
+                            if (x + 1 < Chunk.Size && this[x + 1, y, z].Definition == BlockManager.GetBlock("air"))
+                            {
+                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Right, Rect.zero);
+                            }
+
+                            if (x - 1 >= 0 && this[x - 1, y, z].Definition == BlockManager.GetBlock("air"))
+                            {
+                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Left, Rect.zero);
+                            }
+
+                            if (z + 1 < Chunk.Size && this[x, y, z + 1].Definition == BlockManager.GetBlock("air"))
+                            {
+                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Forward, Rect.zero);
+                            }
+
+                            if (z - 1 >= 0 && this[x, y, z - 1].Definition == BlockManager.GetBlock("air"))
+                            {
+                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Back, Rect.zero);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return meshData;
         }
 
         /// <summary>
@@ -37,7 +87,7 @@ namespace Runed.Voxel
                     throw new ArgumentOutOfRangeException("Fix this to return the block in the world instance.");
                 }
 
-                return this._blocks[x, y, z];
+                return this.Blocks[x, y, z];
             }
             set
             {
@@ -46,7 +96,7 @@ namespace Runed.Voxel
                     throw new ArgumentOutOfRangeException("Fix this to return the block in the world instance.");
                 }
 
-                this._blocks[x, y, z] = value;
+                this.Blocks[x, y, z] = value;
             }
         }
 

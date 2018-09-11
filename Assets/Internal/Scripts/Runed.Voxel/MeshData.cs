@@ -140,7 +140,7 @@ namespace Runed.Voxel
             this.uv.Add(new Vector2(uv.x, uv.y + uv.height));
         }
 
-        public virtual Mesh BuildMesh()
+        public virtual Mesh ToMesh()
         {
             var mesh = new Mesh();
             mesh.subMeshCount = this.triangles.Count;

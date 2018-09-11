@@ -13,6 +13,8 @@ namespace Runed.Voxel
         public virtual string DisplayName { get; }
 
         public virtual bool Solid { get; }
+        public virtual bool Translucent { get; } = false;
+        public virtual bool Render { get; } = true;
 
         public virtual Texture2D Texture { get; }
 
