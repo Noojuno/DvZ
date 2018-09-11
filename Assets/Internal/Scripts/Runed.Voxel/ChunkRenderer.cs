@@ -13,11 +13,11 @@ namespace Runed.Voxel
         public Material material;
 
         // Use this for initialization
-        private void Start()
+        void Start()
         {
             BlockManager.Initialize();
 
-            Chunk = new Chunk(null);
+            this.Chunk = new Chunk(WorldManager.Active, Vector3.zero);
 
             for (var x = 0; x < Chunk.Size; x++)
             {
@@ -25,26 +25,38 @@ namespace Runed.Voxel
                 {
                     for (var y = 0; y < Chunk.Size; y++)
                     {
-                        if (y == 0  || (y == 1 && x >=4 && x <= 11) || (y == 2 && x >= 6 && x <= 9 && z >= 4 && z <= 11) || y == 8 )
+                        if (y == 0  || (y == 1 && x >=4 && x <= 11) || (y == 2 && x >= 6 && x <= 9 && z >= 4 && z <= 11) || y == 8 || x == 0 && z == 0 )
                         {
-                            Chunk.Blocks[x, y, z] = new Block(BlockManager.GetBlock(1));
+                            this.Chunk.Blocks[x, y, z] = new Block(BlockManager.GetBlock(1));
                         }
                         else
                         {
 
-                            Chunk.Blocks[x, y, z] = new Block(BlockManager.GetBlock("air"));
+                            this.Chunk.Blocks[x, y, z] = new Block(BlockManager.GetBlock("air"));
                         }
                     }
                 }
             }
 
-            meshFilter = GetComponent<MeshFilter>();
-            meshRenderer = GetComponent<MeshRenderer>();
-            meshRenderer.material = material;
+            this.meshFilter = this.GetComponent<MeshFilter>();
+            this.meshRenderer = this.GetComponent<MeshRenderer>();
 
-            mesh = Chunk.ToMeshData().ToMesh();
+            this.mesh = this.Chunk.ToMeshData().ToMesh();
 
-            this.meshFilter.sharedMesh = mesh;
+            this.meshFilter.sharedMesh = this.mesh;
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.L))
+            {
+                this.Chunk[4, 8, 4] = new Block(BlockManager.GetBlock("air"));
+            }
+
+            if (this.Chunk != null && this.Chunk.Dirty)
+            {
+                this.mesh = this.Chunk.ToMeshData().ToMesh();
+            }
         }
     }
 }

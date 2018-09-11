@@ -11,15 +11,18 @@ namespace Runed.Voxel
 
         // PUBLIC VARIABLES
         public World World;
+        public Vector3 Position;
         public bool Dirty = true;
+        public bool Loaded = false;
 
         // PRIVATE VARIABLES
         public Block[,,] Blocks { get; set; }
 
-        public Chunk(World world)
+        public Chunk(World world, Vector3 position)
         {
             this.World = world;
             this.Blocks = new Block[Chunk.Size, Chunk.Size, Chunk.Size];
+            this.Position = position;
         }
 
         public MeshData ToMeshData()
@@ -68,6 +71,8 @@ namespace Runed.Voxel
                 }
             }
 
+            this.Dirty = false;
+
             return meshData;
         }
 
@@ -97,6 +102,8 @@ namespace Runed.Voxel
                 }
 
                 this.Blocks[x, y, z] = value;
+
+                this.Dirty = true;
             }
         }
 

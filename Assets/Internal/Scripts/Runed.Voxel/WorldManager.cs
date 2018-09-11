@@ -3,27 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Runed.Voxel
 {
-    public static class WorldManager
+    public class WorldManager : MonoBehaviour
     {
-        public static List<World> Worlds = new List<World>();
-        public static World Current;
+        public static WorldManager Instance;
 
-        /* public static void RegisterWorld(World world)
-        {
-            WorldManager.Worlds.Add(world);
-        } */
+        public static World Active => WorldManager.Instance._activeWorld;
 
-        public static void Update()
+        public List<World> Worlds = new List<World>();
+
+        private World _activeWorld;
+
+        void Awake()
         {
-            /* foreach (var world in WorldManager.Worlds)
+            WorldManager.Instance = this;
+            this.Worlds = new List<World>();
+        }
+
+        void Start()
+        {
+            this._activeWorld = new World(6969);
+            this.RegisterWorld(this._activeWorld);
+        }
+
+        public void RegisterWorld(World world)
+        {
+            this.Worlds.Add(world);
+        }
+
+        void Update()
+        {
+            foreach (var world in this.Worlds)
             {
                 world.Update();
-            } */
+            }
 
-            WorldManager.Current.Update();
+            //WorldManager.Active.Update();
         }
     }
 }
