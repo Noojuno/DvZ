@@ -319,6 +319,7 @@
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/ChunkRenderer.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/MeshData.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/TerrainGenerator.cs
+-i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/TextureManager.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/World.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/WorldManager.cs
 -v:0

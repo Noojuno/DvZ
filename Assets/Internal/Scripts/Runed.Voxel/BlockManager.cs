@@ -35,6 +35,11 @@ namespace Runed.Voxel
                     BlockManager.BlockTypes[BlockManager.NextAvailableId] = blockDefinition;
                 }
             }
+
+            foreach (var type in BlockTypes)
+            {
+                Debug.Log(type.Value.DisplayName + " " + type.Value.Identifier);
+            }
         }
 
         public static BlockDefinition GetBlock(string identifier)

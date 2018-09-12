@@ -5,13 +5,21 @@ namespace DvZ.Core
 {
     public class Test : MonoBehaviour
     {
-        public void Update()
+        public Texture2D texture;
+        public Texture2D tex2;
+
+        void Awake()
         {
-            if (Input.GetKeyUp(KeyCode.Alpha1))
-            {
-                BlockManager.Initialize();
-                Debug.Log(BlockManager.Export());
-            }
+            BlockManager.Initialize();
+            TextureManager.Initialize();
+        }
+
+        void Start()
+        {
+            this.texture = TextureManager.GetTexture("blocks.blocktesttwo");
+
+            //this.tex2 = Resources.Load<Texture2D>("Textures/lapis_ore");
+            
         }
     }
 }

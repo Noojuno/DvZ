@@ -40,8 +40,6 @@ namespace Runed.Voxel
             {
                 world.Update();
             }
-
-            //WorldManager.Active.Update();
         }
     }
 }
