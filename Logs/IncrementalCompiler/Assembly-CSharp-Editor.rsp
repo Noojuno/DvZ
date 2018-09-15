@@ -85,8 +85,10 @@
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Rendering.Hybrid.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.Editor.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/FastNoiseC.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.Hybrid.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Mathematics.dll
+-r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/FastNoise.SIMD.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Entities.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Transforms.dll
 -r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Burst.Editor.dll

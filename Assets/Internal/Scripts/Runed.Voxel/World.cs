@@ -43,15 +43,21 @@ namespace Runed.Voxel
 
         public Block GetBlock(Vector3Int worldPos)
         {
-            int chunkX = (int)worldPos.x % 16;
+            int chunkX = Mathf.FloorToInt(worldPos.x / Chunk.Size);
+            int chunkY = Mathf.FloorToInt(worldPos.y / Chunk.Size);
+            int chunkZ = Mathf.FloorToInt(worldPos.z / Chunk.Size);
 
-            return this._chunks[worldPos][0, 0, 0];
+            Vector3Int chunkPos = new Vector3Int(chunkX, chunkY, chunkZ);
+
+            int blockX = Mathf.Abs(worldPos.x - (chunkX * Chunk.Size));
+            int blockY = Mathf.Abs(worldPos.y - (chunkY * Chunk.Size));
+            int blockZ = Mathf.Abs(worldPos.z - (chunkZ * Chunk.Size));
+
+            Vector3Int blockPos = new Vector3Int(blockX, blockY, blockZ);
+
+            return this._chunks[chunkPos][blockPos];
         }
 
-        public void LoadChunk(Vector3Int position)
-        {
-
-        }
 
         public void Update()
         {

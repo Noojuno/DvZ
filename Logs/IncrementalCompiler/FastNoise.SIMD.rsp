@@ -83,16 +83,7 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
--r:E:/Projects/Games/DvZ/Assets/External/Json.Net/Newtonsoft.Json.dll
--r:E:/Projects/Games/DvZ/Assets/Plugins/GitHub/Editor/AsyncBridge.Net35.dll
--r:E:/Projects/Games/DvZ/Assets/Plugins/GitHub/Editor/GitHub.Api.dll
--r:E:/Projects/Games/DvZ/Assets/Plugins/GitHub/Editor/GitHub.Logging.dll
--r:E:/Projects/Games/DvZ/Assets/Plugins/GitHub/Editor/GitHub.Unity.dll
--r:E:/Projects/Games/DvZ/Assets/Plugins/GitHub/Editor/ICSharpCode.SharpZipLib.dll
--r:E:/Projects/Games/DvZ/Assets/Plugins/GitHub/Editor/Mono.Posix.dll
--r:E:/Projects/Games/DvZ/Assets/Plugins/GitHub/Editor/ReadOnlyCollectionsInterfaces.dll
--r:E:/Projects/Games/DvZ/Assets/Plugins/GitHub/Editor/sfw.net.dll
--r:E:/Projects/Games/DvZ/Assets/Plugins/GitHub/Editor/System.Threading.dll
+-r:"E:/Projects/Games/DvZ/Assets/External/Plugins/Sirenix/Odin Serializer/EditorOnly/OdinSerializer.dll"
 -r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
 -r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll
 -r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/Editor/UnityEditor.Analytics.dll
@@ -318,5 +309,7 @@
 -d:UNITY_TEAM_LICENSE
 -d:ENABLE_VSTU
 -d:UNITY_POST_PROCESSING_STACK_V2
--i:"E:/Projects/Games/DvZ/Assets/External/FastNoise Unity/FastNoise SIMD/FastNoiseSIMD.cs"
+-i:E:/Projects/Games/DvZ/Assets/External/Scripts/FastNoise.SIMD/Editor/FastNoiseSIMDUnityEditor.cs
+-i:E:/Projects/Games/DvZ/Assets/External/Scripts/FastNoise.SIMD/FastNoiseSIMD.cs
+-i:E:/Projects/Games/DvZ/Assets/External/Scripts/FastNoise.SIMD/FastNoiseSIMDUnity.cs
 -v:0

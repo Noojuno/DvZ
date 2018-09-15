@@ -22,7 +22,7 @@ namespace Runed.Voxel
 
             this.Chunk = new Chunk(WorldManager.Active, Vector3Int.zero);
 
-            for (var x = 0; x < Chunk.Size; x++)
+            /* for (var x = 0; x < Chunk.Size; x++)
             {
                 for (var z = 0; z < Chunk.Size; z++)
                 {
@@ -39,7 +39,9 @@ namespace Runed.Voxel
                         }
                     }
                 }
-            }
+            } */
+
+            WorldManager.Active.TerrainGenerator.Generate(this.Chunk);
 
             this.Chunk.Loaded = true;
             this.Chunk.Dirty = true;

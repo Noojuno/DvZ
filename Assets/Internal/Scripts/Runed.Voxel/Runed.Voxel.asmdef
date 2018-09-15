@@ -2,7 +2,7 @@
     "name": "Runed.Voxel",
     "references": [
         "Runed.Utilities",
-        "Unity.Entities"
+        "FastNoiseC"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
