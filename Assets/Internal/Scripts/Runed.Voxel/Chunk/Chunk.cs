@@ -14,6 +14,7 @@ namespace Runed.Voxel
 
         public bool Dirty = true;
         public bool Loaded = false;
+        public bool Rendered = false;
 
         // PRIVATE VARIABLES
         public Block[,,] Blocks { get; set; }
@@ -21,60 +22,21 @@ namespace Runed.Voxel
         public Chunk(World world, Vector3Int position)
         {
             this.World = world;
-            this.World.AddChunk(this, this.Position);
-            this.Blocks = new Block[Chunk.Size, Chunk.Size, Chunk.Size];
             this.Position = position;
+            this.World.AddChunk(this);
+            this.Blocks = new Block[Chunk.Size, Chunk.Size, Chunk.Size];
         }
 
-        public MeshData ToMeshData()
+        public void RebuildAdjacentChunks()
         {
-            var meshData = new MeshData();
-
-            for (int x = 0; x < Chunk.Size; x++)
+            foreach (Direction direction in Enum.GetValues(typeof(Direction)))
             {
-                for (int y = 0; y < Chunk.Size; y++)
+                if (this.World.GetAdjacentChunk(this.Position, direction) != null)
                 {
-                    for (int z = 0; z < Chunk.Size; z++)
-                    {
-                        if (this[x, y, z] != null && this[x, y, z].Definition.Render)
-                        {
-                            if (y + 1 < Chunk.Size && !this[x, y + 1, z].Definition.Render)
-                            {
-                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Up, Rect.zero );
-                            }
+                    this.World.GetAdjacentChunk(this.Position, direction).Dirty = true;
 
-                            if (y - 1 >= 0 && !this[x, y - 1, z].Definition.Render)
-                            {
-                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Down, Rect.zero);
-                            }
-
-                            if (x + 1 < Chunk.Size && !this[x + 1, y, z].Definition.Render)
-                            {
-                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Right, Rect.zero);
-                            }
-
-                            if (x - 1 >= 0 && !this[x - 1, y, z].Definition.Render)
-                            {
-                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Left, Rect.zero);
-                            }
-
-                            if (z + 1 < Chunk.Size && !this[x, y, z + 1].Definition.Render)
-                            {
-                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Forward, Rect.zero);
-                            }
-
-                            if (z - 1 >= 0 && !this[x, y, z - 1].Definition.Render)
-                            {
-                                meshData.AddQuad(new Vector3(x, y, z), BlockDirection.Back, Rect.zero);
-                            }
-                        }
-                    }
                 }
             }
-
-            this.Dirty = false;
-
-            return meshData;
         }
 
         /// <summary>
@@ -103,6 +65,11 @@ namespace Runed.Voxel
                 }
 
                 this.Blocks[x, y, z] = value;
+
+                if (x == Chunk.Size - 1 || y == Chunk.Size - 1 || z == Chunk.Size - 1)
+                {
+                    this.RebuildAdjacentChunks();
+                }
 
                 this.Dirty = true;
             }

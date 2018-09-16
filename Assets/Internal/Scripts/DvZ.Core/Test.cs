@@ -8,6 +8,8 @@ namespace DvZ.Core
         public Texture2D texture;
         public Texture2D tex2;
 
+        public Vector3Int pos;
+
         void Awake()
         {
             BlockManager.Initialize();
@@ -20,6 +22,14 @@ namespace DvZ.Core
 
             //this.tex2 = Resources.Load<Texture2D>("Textures/lapis_ore");
             
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.G))
+            {
+                Debug.Log(WorldManager.Active.GetBlock(pos).Definition.Identifier);
+            }
         }
     }
 }

@@ -49,5 +49,10 @@ namespace Runed.Voxel
 
             return TextureManager.Textures[key];
         }
+
+        public static Texture2D GetBlockTexture(BlockDefinition blockDefinition)
+        {
+            return TextureManager.GetTexture($"blocks:{blockDefinition.Identifier}");
+        }
     }
 }

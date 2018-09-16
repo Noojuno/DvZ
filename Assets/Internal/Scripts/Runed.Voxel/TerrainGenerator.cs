@@ -52,24 +52,32 @@ namespace Runed.Voxel
                 for (int z = 0; z < 16; z++)
                 {
                     // Pseudo function to process data in noise set
+                    int g = 0;
 
-                    var s = Mathf.Min(x * z, 15);
-
-                    Debug.Log(s);
+                    //Debug.Log(s);
 
                     for (int y = 0; y < Chunk.Size; y++)
                     {
                         chunk[x, y, z] = new Block(BlockManager.GetBlock("air"));
                     }
 
-                    for (int y = 0; y < s; y++)
-                    {
-                        chunk[x, y, z] = new Block(BlockManager.GetBlock(1));
-                    }
 
+                    if (chunk.Position.y % 2 != 0)
+                    {
+                        for (int y = 15; y > Mathf.Min(Mathf.Min(x, z), Chunk.Size); y--)
+                        {
+                            chunk[x, y, z] = new Block(BlockManager.GetBlock(1));
+                        }
+                    }
+                    else
+                    {
+                        for (int y = 0; y < Mathf.Min(Mathf.Max(x, z), Chunk.Size); y++)
+                        {
+                            chunk[x, y, z] = new Block(BlockManager.GetBlock(1));
+                        }
+                    }
                 }
             }
-
         }
     }
 }

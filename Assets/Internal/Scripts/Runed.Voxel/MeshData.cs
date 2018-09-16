@@ -73,54 +73,54 @@ namespace Runed.Voxel
 
         public virtual void AddCube(Vector3 position, int subMesh, Rect[] uvs)
         {
-            this.AddQuad(position, subMesh, BlockDirection.Forward, uvs[0]);
-            this.AddQuad(position, subMesh, BlockDirection.Back, uvs[1]);
-            this.AddQuad(position, subMesh, BlockDirection.Right, uvs[2]);
-            this.AddQuad(position, subMesh, BlockDirection.Left, uvs[3]);
-            this.AddQuad(position, subMesh, BlockDirection.Up, uvs[4]);
-            this.AddQuad(position, subMesh, BlockDirection.Down, uvs[5]);
+            this.AddQuad(position, subMesh, Direction.Forward, uvs[0]);
+            this.AddQuad(position, subMesh, Direction.Back, uvs[1]);
+            this.AddQuad(position, subMesh, Direction.Right, uvs[2]);
+            this.AddQuad(position, subMesh, Direction.Left, uvs[3]);
+            this.AddQuad(position, subMesh, Direction.Up, uvs[4]);
+            this.AddQuad(position, subMesh, Direction.Down, uvs[5]);
         }
 
-        public virtual void AddQuad(Vector3 position, BlockDirection direction, Rect uv)
+        public virtual void AddQuad(Vector3 position, Direction direction, Rect uv)
         {
             this.AddQuad(position, 0, direction, uv);
         }
 
-        public virtual void AddQuad(Vector3 position, int subMesh, BlockDirection direction, Rect uv)
+        public virtual void AddQuad(Vector3 position, int subMesh, Direction direction, Rect uv)
         {
             switch (direction)
             {
-                case BlockDirection.Forward:
+                case Direction.Forward:
                     this.vertices.Add(position + Vector3.forward + Vector3.left);
                     this.vertices.Add(position + Vector3.forward);
                     this.vertices.Add(position + Vector3.forward + Vector3.left + Vector3.up);
                     this.vertices.Add(position + Vector3.forward + Vector3.up);
                     break;
-                case BlockDirection.Back:
+                case Direction.Back:
                     this.vertices.Add(position);
                     this.vertices.Add(position + Vector3.left);
                     this.vertices.Add(position + Vector3.up);
                     this.vertices.Add(position + Vector3.left + Vector3.up);
                     break;
-                case BlockDirection.Right:
+                case Direction.Right:
                     this.vertices.Add(position + Vector3.forward);
                     this.vertices.Add(position);
                     this.vertices.Add(position + Vector3.forward + Vector3.up);
                     this.vertices.Add(position + Vector3.up);
                     break;
-                case BlockDirection.Left:
+                case Direction.Left:
                     this.vertices.Add(position + Vector3.left);
                     this.vertices.Add(position + Vector3.left + Vector3.forward);
                     this.vertices.Add(position + Vector3.left + Vector3.up);
                     this.vertices.Add(position + Vector3.left + Vector3.forward + Vector3.up);
                     break;
-                case BlockDirection.Up:
+                case Direction.Up:
                     this.vertices.Add(position + Vector3.up);
                     this.vertices.Add(position + Vector3.up + Vector3.left);
                     this.vertices.Add(position + Vector3.up + Vector3.forward);
                     this.vertices.Add(position + Vector3.up + Vector3.forward + Vector3.left);
                     break;
-                case BlockDirection.Down:
+                case Direction.Down:
                     this.vertices.Add(position + Vector3.forward);
                     this.vertices.Add(position + Vector3.forward + Vector3.left);
                     this.vertices.Add(position);

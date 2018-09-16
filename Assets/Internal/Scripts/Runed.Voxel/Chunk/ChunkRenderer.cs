@@ -10,17 +10,25 @@ namespace Runed.Voxel
         public MeshFilter meshFilter;
         public MeshRenderer meshRenderer;
 
-        public Material material;
+        public Vector3Int chunkPosition = Vector3Int.zero;
+
+        public static int a = -1;
 
         // Use this for initialization
         void Start()
         {
             this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();
+            this.meshRenderer.material.mainTexture = TextureManager.GetBlockTexture(BlockManager.GetBlock("blocktesttwo"));
 
             this.mesh = new Mesh();
 
-            this.Chunk = new Chunk(WorldManager.Active, Vector3Int.zero);
+            this.Chunk = new Chunk(WorldManager.Active, new Vector3Int(0, a, 0));
+            a++;
+
+            this.transform.position = this.Chunk.Position * Chunk.Size;
+            this.gameObject.name = "Chunk " + this.Chunk.Position;
+
 
             /* for (var x = 0; x < Chunk.Size; x++)
             {
@@ -46,7 +54,6 @@ namespace Runed.Voxel
             this.Chunk.Loaded = true;
             this.Chunk.Dirty = true;
 
-
             this.meshFilter.sharedMesh = this.mesh;
         }
 
@@ -60,8 +67,10 @@ namespace Runed.Voxel
 
             if (this.Chunk != null && this.Chunk.Loaded && this.Chunk.Dirty)
             {
-                this.mesh = this.Chunk.ToMeshData().ToMesh();
+                this.mesh = MeshBuilder.BuildChunk(this.Chunk).ToMesh();
                 this.meshFilter.sharedMesh = this.mesh;
+
+                this.Chunk.Rendered = true;
             }
         }
     }

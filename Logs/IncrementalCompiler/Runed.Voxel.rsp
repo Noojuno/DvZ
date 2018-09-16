@@ -313,13 +313,15 @@
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/Block.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockDefinition.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockDefinitionAir.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockDirection.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockManager.cs
+-i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/Direction.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Chunk/Chunk.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Chunk/ChunkRenderer.cs
+-i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Mesh/MeshBuilder.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/MeshData.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/TerrainGenerator.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/TextureManager.cs
+-i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Vector3IntUtil.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/World.cs
 -i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/WorldManager.cs
 -v:0

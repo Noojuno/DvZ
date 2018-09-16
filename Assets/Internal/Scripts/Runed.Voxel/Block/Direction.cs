@@ -1,6 +1,6 @@
 ﻿namespace Runed.Voxel
 {
-    public enum BlockDirection
+    public enum Direction
     {
         Forward,
         Back,

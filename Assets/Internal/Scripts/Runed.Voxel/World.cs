@@ -31,9 +31,9 @@ namespace Runed.Voxel
             this._chunks = new Dictionary<Vector3Int, Chunk>();
         }
 
-        public void AddChunk(Chunk chunk, Vector3Int position)
+        public void AddChunk(Chunk chunk)
         {
-            this._chunks[position] = chunk;
+            this._chunks[chunk.Position] = chunk;
         }
 
         public Block GetBlock(int x, int y, int z)
@@ -43,11 +43,14 @@ namespace Runed.Voxel
 
         public Block GetBlock(Vector3Int worldPos)
         {
-            int chunkX = Mathf.FloorToInt(worldPos.x / Chunk.Size);
-            int chunkY = Mathf.FloorToInt(worldPos.y / Chunk.Size);
-            int chunkZ = Mathf.FloorToInt(worldPos.z / Chunk.Size);
+            int chunkX = worldPos.x >> (int)Mathf.Sqrt(Chunk.Size);
+            int chunkY = worldPos.y >> (int)Mathf.Sqrt(Chunk.Size);
+            int chunkZ = worldPos.z >> (int)Mathf.Sqrt(Chunk.Size);
 
             Vector3Int chunkPos = new Vector3Int(chunkX, chunkY, chunkZ);
+
+
+            if (!this.ChunkExistsAt(chunkPos)) return null;
 
             int blockX = Mathf.Abs(worldPos.x - (chunkX * Chunk.Size));
             int blockY = Mathf.Abs(worldPos.y - (chunkY * Chunk.Size));
@@ -55,9 +58,53 @@ namespace Runed.Voxel
 
             Vector3Int blockPos = new Vector3Int(blockX, blockY, blockZ);
 
+
+            if (blockX >= Chunk.Size || blockY >= Chunk.Size || blockZ >= Chunk.Size) return null;
+
             return this._chunks[chunkPos][blockPos];
         }
 
+        public Chunk GetChunk(Vector3Int position)
+        {
+            if (this._chunks.ContainsKey(position))
+            {
+                return this._chunks[position];
+            }
+
+            return null;
+        }
+
+        public Chunk GetAdjacentChunk(Vector3Int position, Direction direction)
+        {
+            return this.GetChunk(position.AdjustByDirection(direction));
+        }
+
+        public Block GetAdjacentBlock(Vector3Int position, Direction direction)
+        {
+            return this.GetBlock(position.AdjustByDirection(direction));
+        }
+
+        public string DumpChunks()
+        {
+            var s = "";
+
+            foreach (var chunk in this._chunks.Keys)
+            {
+                s += chunk.ToString() + ", ";
+            }
+
+            return s;
+        }
+
+        public bool ChunkExistsAt(Vector3Int position)
+        {
+            return this._chunks.ContainsKey(position);
+        }
+
+        public bool HasAdjacentChunk(Vector3Int position, Direction direction)
+        {
+            return false;
+        }
 
         public void Update()
         {
