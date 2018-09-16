@@ -18,6 +18,18 @@ namespace Runed.Voxel
 
         public virtual Texture2D Texture { get; }
 
+        public virtual Rect UVs => TextureManager.GetBlockUVs(this);
+
         public virtual bool HasCustomModel { get; }
+
+        public BlockDefinition()
+        {
+
+        }
+
+        public virtual TextureAsset GetTexture(Direction direction)
+        {
+            return TextureAsset.blank;
+        }
     }
 }

@@ -2,7 +2,7 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:E:/Projects/Games/DvZ/Temp/Runed.Voxel.dll
+-out:C:/Users/jonat/Projects/DvZ/Temp/Runed.Voxel.dll
 -nostdlib
 -unsafe
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
@@ -67,7 +67,7 @@
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.XRModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEditor.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/Unity.Locator.dll"
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/FastNoiseC.dll
+-r:C:/Users/jonat/Projects/DvZ/Library/ScriptAssemblies/FastNoiseC.dll
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll"
@@ -84,17 +84,17 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2018.2.7f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
--r:"E:/Projects/Games/DvZ/Assets/External/Plugins/Sirenix/Odin Serializer/EditorOnly/OdinSerializer.dll"
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/Editor/UnityEditor.Analytics.dll
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.collections@0.0.9-preview.4/System.Runtime.CompilerServices.Unsafe.dll
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.properties@0.2.11-preview/Editor/Serialization/External/Cecil/Mono.Cecil.dll
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.properties@0.2.11-preview/Editor/Serialization/External/Cecil/Mono.Cecil.Mdb.dll
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.properties@0.2.11-preview/Editor/Serialization/External/Cecil/Mono.Cecil.Pdb.dll
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.properties@0.2.11-preview/Editor/Serialization/External/Cecil/Mono.Cecil.Rocks.dll
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
--r:C:/Users/Jono/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll
+-r:"C:/Users/jonat/Projects/DvZ/Assets/External/Plugins/Sirenix/Odin Serializer/EditorOnly/OdinSerializer.dll"
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/Editor/UnityEditor.Analytics.dll
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.collections@0.0.9-preview.4/System.Runtime.CompilerServices.Unsafe.dll
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.properties@0.2.11-preview/Editor/Serialization/External/Cecil/Mono.Cecil.dll
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.properties@0.2.11-preview/Editor/Serialization/External/Cecil/Mono.Cecil.Mdb.dll
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.properties@0.2.11-preview/Editor/Serialization/External/Cecil/Mono.Cecil.Pdb.dll
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.properties@0.2.11-preview/Editor/Serialization/External/Cecil/Mono.Cecil.Rocks.dll
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
+-r:C:/Users/jonat/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll
 -r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll"
@@ -310,18 +310,19 @@
 -d:UNITY_TEAM_LICENSE
 -d:ENABLE_VSTU
 -d:UNITY_POST_PROCESSING_STACK_V2
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/Block.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockDefinition.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockDefinitionAir.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockManager.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/Direction.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Chunk/Chunk.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Chunk/ChunkRenderer.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Mesh/MeshBuilder.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/MeshData.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/TerrainGenerator.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/TextureManager.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/Vector3IntUtil.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/World.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Voxel/WorldManager.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/Block.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockDefinition.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockDefinitionAir.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/BlockManager.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/Block/Direction.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/Chunk/Chunk.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/Chunk/ChunkRenderer.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/Mesh/MeshBuilder.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/MeshData.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/TerrainGenerator.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/TextureAsset.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/TextureManager.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/Vector3IntUtil.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/World.cs
+-i:C:/Users/jonat/Projects/DvZ/Assets/Internal/Scripts/Runed.Voxel/WorldManager.cs
 -v:0

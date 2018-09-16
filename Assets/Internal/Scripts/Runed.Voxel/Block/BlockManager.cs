@@ -14,31 +14,27 @@ namespace Runed.Voxel
         {
             BlockManager.BlockTypes = new Dictionary<int, BlockDefinition>();
 
-            string[] list = BlockManager.Load();
+            Dictionary<string, int> map = new Dictionary<string, int> {{"air", 0}};
 
             var blockDefinitions = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(x => x.GetTypes().Where(y => y.IsClass && y.BaseType == typeof(BlockDefinition)))
                 .Select(x => Activator.CreateInstance(x) as BlockDefinition)
                 .ToArray();
 
-            //TODO: FIX THIS DOGSHIT
-            foreach (var blockDefinition in blockDefinitions)
-            {
-                var a = list.Where(value => value.Split(';')[1] == blockDefinition.Identifier);
+            var orderedDefinitions = blockDefinitions.OrderBy(e => map.ContainsKey(e.Identifier) ? 0 : 1);
 
-                if (a.Any())
-                {
-                    BlockManager.BlockTypes[int.Parse(a.First().Split(';')[0])] = blockDefinition;
-                }
-                else
-                {
-                    BlockManager.BlockTypes[BlockManager.NextAvailableId] = blockDefinition;
-                }
-            }
-
-            foreach (var type in BlockTypes)
+            foreach (var blockDefinition in orderedDefinitions)
             {
-                Debug.Log(type.Value.DisplayName + " " + type.Value.Identifier);
+                var id = BlockManager.NextAvailableId;
+
+                if (map.ContainsKey(blockDefinition.Identifier))
+                {
+                    id = map[blockDefinition.Identifier];
+                }
+
+                Debug.Log($"Name: {blockDefinition.DisplayName}, Identifier: {blockDefinition.Identifier}, Numeric: {id}");
+
+                BlockManager.BlockTypes[id] = blockDefinition;
             }
         }
 

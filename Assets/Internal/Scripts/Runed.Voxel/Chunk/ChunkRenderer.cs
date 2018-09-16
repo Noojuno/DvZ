@@ -19,7 +19,7 @@ namespace Runed.Voxel
         {
             this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();
-            this.meshRenderer.material.mainTexture = TextureManager.GetBlockTexture(BlockManager.GetBlock("blocktesttwo"));
+            this.meshRenderer.material.mainTexture = TextureManager.BlockAtlas;
 
             this.mesh = new Mesh();
 

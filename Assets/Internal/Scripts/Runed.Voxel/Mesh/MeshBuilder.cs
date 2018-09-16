@@ -28,7 +28,7 @@ namespace Runed.Voxel
                                 if (chunk.World.GetAdjacentBlock(offsetPosition, direction) == null ||
                                     !chunk.World.GetAdjacentBlock(offsetPosition, direction).Definition.Render)
                                 {
-                                    meshData.AddQuad(new Vector3(x, y, z), direction, new Rect(0, 0, 1, 1));
+                                    meshData.AddQuad(new Vector3(x, y, z), direction, chunk[x, y, z].Definition.UVs);
                                 }
                             }
                         }

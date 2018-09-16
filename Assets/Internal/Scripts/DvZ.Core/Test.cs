@@ -1,4 +1,5 @@
 ﻿using Runed.Voxel;
+using UnityEditor;
 using UnityEngine;
 
 namespace DvZ.Core
@@ -18,7 +19,7 @@ namespace DvZ.Core
 
         void Start()
         {
-            this.texture = TextureManager.GetTexture("blocks.blocktesttwo");
+            this.texture = TextureManager.GetTexture("blocks:blocktesttwo");
 
             //this.tex2 = Resources.Load<Texture2D>("Textures/lapis_ore");
             
@@ -29,6 +30,14 @@ namespace DvZ.Core
             if (Input.GetKeyUp(KeyCode.G))
             {
                 Debug.Log(WorldManager.Active.GetBlock(pos).Definition.Identifier);
+            }
+        }
+
+        void OnGUI()
+        {
+            if(GUI.Button(new Rect(10, 10, 100, 25), "Open Minecraft Level"))
+            {
+                string path = EditorUtility.OpenFilePanel("Open level.dat", "", "dat");
             }
         }
     }
