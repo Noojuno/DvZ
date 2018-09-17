@@ -25,10 +25,13 @@ namespace Runed.Voxel
                         {
                             foreach (Direction direction in Enum.GetValues(typeof(Direction)))
                             {
-                                if (chunk.World.GetAdjacentBlock(offsetPosition, direction) == null ||
-                                    !chunk.World.GetAdjacentBlock(offsetPosition, direction).Definition.Render)
+                                var adjacentBlock = chunk.World.GetAdjacentBlock(offsetPosition, direction);
+
+                                if (adjacentBlock == null || !adjacentBlock.Definition.Render ||
+                                    adjacentBlock.Definition.HasCustomModel || adjacentBlock.Definition.Translucent &&
+                                    adjacentBlock.Definition.Identifier != chunk[x, y, z].Definition.Identifier)
                                 {
-                                    meshData.AddQuad(new Vector3(x, y, z), direction, chunk[x, y, z].Definition.UVs);
+                                    meshData.AddQuad(new Vector3(x, y, z), direction, chunk[x, y, z].Definition.GetTexture(direction).UV);
                                 }
                             }
                         }

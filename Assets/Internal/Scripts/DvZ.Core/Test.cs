@@ -9,6 +9,8 @@ namespace DvZ.Core
         public Texture2D texture;
         public Texture2D tex2;
 
+        public Rect rect;
+
         public Vector3Int pos;
 
         void Awake()
@@ -19,10 +21,11 @@ namespace DvZ.Core
 
         void Start()
         {
-            this.texture = TextureManager.GetTexture("blocks:blocktesttwo");
+            this.texture = TextureManager.GetTexture("blocks:blocktesttwo").Texture;
+            this.rect = TextureManager.GetTexture("blocks:blocktesttwo").UV;
 
             //this.tex2 = Resources.Load<Texture2D>("Textures/lapis_ore");
-            
+
         }
 
         void Update()

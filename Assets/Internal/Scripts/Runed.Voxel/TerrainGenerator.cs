@@ -1,4 +1,4 @@
-﻿using FastNoiseC;
+﻿using FastNoise.SIMD;
 using UnityEngine;
 
 namespace Runed.Voxel
@@ -6,19 +6,19 @@ namespace Runed.Voxel
     public class TerrainGenerator
     {
         private int _seed = 100;
-        private FastNoise _noise;
+        private FastNoiseSIMD _noise;
 
         public TerrainGenerator(int seed)
         {
             this._seed = seed;
 
-            this._noise = new FastNoise(seed);
-            this._noise.SetNoiseType(FastNoise.NoiseType.SimplexFractal);
-            this._noise.SetInterp(FastNoise.Interp.Quintic);
-            this._noise.SetFractalType(FastNoise.FractalType.FBM);
-            this._noise.SetCellularDistanceFunction(FastNoise.CellularDistanceFunction.Natural);
+            this._noise = new FastNoiseSIMD(seed);
+            this._noise.SetNoiseType(FastNoiseSIMD.NoiseType.SimplexFractal);
+            //this._noise.SetInterp(FastNoise.Interp.Quintic);
+            this._noise.SetFractalType(FastNoiseSIMD.FractalType.FBM);
+            this._noise.SetCellularDistanceFunction(FastNoiseSIMD.CellularDistanceFunction.Natural);
             this._noise.SetCellularJitter(0.45f);
-            this._noise.SetCellularReturnType(FastNoise.CellularReturnType.CellValue);
+            this._noise.SetCellularReturnType(FastNoiseSIMD.CellularReturnType.CellValue);
             this._noise.SetFrequency(1f);
             this._noise.SetFractalGain(1f);
             this._noise.SetFractalLacunarity(1f);
@@ -36,7 +36,7 @@ namespace Runed.Voxel
                         if (Mathf.Sqrt((float)(x - Chunk.Size / 2) * (x - Chunk.Size / 2) + (y - Chunk.Size / 2) * (y - Chunk.Size / 2) + (z - Chunk.Size / 2) * (z - Chunk.Size / 2)) <= Chunk.Size / 2)
                         {
                             chunk[x, y, z] = new Block(BlockManager.GetBlock(1));
-                        }
+            C:\Users\jonat\Projects\DvZ\Assets\Internal\Scripts\Runed.Voxel\Mesh\MeshBuilder.cs            }
                         else
                         {
                             chunk[x, y, z] = new Block(BlockManager.GetBlock("air"));
@@ -46,6 +46,8 @@ namespace Runed.Voxel
             }*/
 
             int index = 0;
+            var noise = this._noise.GetNoiseSet(chunk.Position.x, chunk.Position.y, chunk.Position.z, Chunk.Size,
+                Chunk.Size, Chunk.Size);
 
             for (int x = 0; x < 16; x++)
             {
@@ -66,16 +68,18 @@ namespace Runed.Voxel
                     {
                         for (int y = 15; y > Mathf.Min(Mathf.Min(x, z), Chunk.Size); y--)
                         {
-                            chunk[x, y, z] = new Block(BlockManager.GetBlock(1));
+                            chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
                         }
                     }
                     else
                     {
                         for (int y = 0; y < Mathf.Min(Mathf.Max(x, z), Chunk.Size); y++)
                         {
-                            chunk[x, y, z] = new Block(BlockManager.GetBlock(1));
+                            chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
                         }
                     }
+
+
                 }
             }
         }
