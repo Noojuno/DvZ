@@ -21,7 +21,7 @@ namespace Runed.Voxel
         public static int MinZ = -100;
 
         public TerrainGenerator TerrainGenerator;
-        private readonly Dictionary<Vector3Int, Chunk> _chunks;
+        public readonly Dictionary<Vector3Int, Chunk> _chunks;
 
         public World(int seed)
         {
@@ -50,7 +50,7 @@ namespace Runed.Voxel
             Vector3Int chunkPos = new Vector3Int(chunkX, chunkY, chunkZ);
 
 
-            if (!this.ChunkExistsAt(chunkPos)) return null;
+            if (!this.ChunkExistsAt(chunkPos)) return new Block(BlockManager.GetBlock("air"));
 
             int blockX = Mathf.Abs(worldPos.x - (chunkX * Chunk.Size));
             int blockY = Mathf.Abs(worldPos.y - (chunkY * Chunk.Size));
@@ -59,7 +59,7 @@ namespace Runed.Voxel
             Vector3Int blockPos = new Vector3Int(blockX, blockY, blockZ);
 
 
-            if (blockX >= Chunk.Size || blockY >= Chunk.Size || blockZ >= Chunk.Size) return null;
+            if (blockX >= Chunk.Size || blockY >= Chunk.Size || blockZ >= Chunk.Size) return new Block(BlockManager.GetBlock("air"));
 
             return this._chunks[chunkPos][blockPos];
         }
@@ -104,6 +104,12 @@ namespace Runed.Voxel
         public bool HasAdjacentChunk(Vector3Int position, Direction direction)
         {
             return false;
+        }
+
+        public void SetSeed(int seed)
+        {
+            this.Seed = seed;
+            this.TerrainGenerator.SetSeed(seed);
         }
 
         public void Update()

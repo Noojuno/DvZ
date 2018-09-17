@@ -1,87 +1,166 @@
-﻿using FastNoise.SIMD;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
+using FastNoiseC;
 
 namespace Runed.Voxel
 {
     public class TerrainGenerator
     {
         private int _seed = 100;
-        private FastNoiseSIMD _noise;
+        private FastNoiseC.FastNoise _noise;
+
+        protected int interpBitStep;
+        protected float interpScale;
+        protected int interpSize;
+        protected int interpSizeSq;
+        protected float maxHeight = float.MaxValue;
+        protected float minHeight = float.MinValue;
+        public float terrainScale = 20f;
+        public float canyonMaxHeight = 10f;
+        public float canyonGradient = 2f;
 
         public TerrainGenerator(int seed)
         {
             this._seed = seed;
 
-            this._noise = new FastNoiseSIMD(seed);
-            this._noise.SetNoiseType(FastNoiseSIMD.NoiseType.SimplexFractal);
-            //this._noise.SetInterp(FastNoise.Interp.Quintic);
-            this._noise.SetFractalType(FastNoiseSIMD.FractalType.FBM);
-            this._noise.SetCellularDistanceFunction(FastNoiseSIMD.CellularDistanceFunction.Natural);
+            this._noise = new FastNoiseC.FastNoise(seed);
+            this._noise.SetNoiseType(FastNoiseC.FastNoise.NoiseType.Cellular);
+            this._noise.SetInterp(FastNoiseC.FastNoise.Interp.Quintic);
+            this._noise.SetFractalType(FastNoiseC.FastNoise.FractalType.FBM);
+            this._noise.SetCellularDistanceFunction(FastNoiseC.FastNoise.CellularDistanceFunction.Natural);
             this._noise.SetCellularJitter(0.45f);
-            this._noise.SetCellularReturnType(FastNoiseSIMD.CellularReturnType.CellValue);
+            this._noise.SetCellularReturnType(FastNoiseC.FastNoise.CellularReturnType.CellValue);
             this._noise.SetFrequency(1f);
             this._noise.SetFractalGain(1f);
             this._noise.SetFractalLacunarity(1f);
             this._noise.SetFractalOctaves(5);
+
+            this.SetInterpBitStep(1);
+
+            minHeight = -terrainScale;
+            maxHeight = terrainScale;
+        }
+
+        public void SetSeed(int seed)
+        {
+            this._seed = seed;
+            this._noise.SetSeed(this._seed);
+        }
+
+        protected void SetNoiseArraySize(int size)
+        {
+            //System.Array.Resize(ref _noise, size);
         }
 
         public void Generate(Chunk chunk)
         {
-            /* for (int z = 0; z < Chunk.Size; z++)
+            float[] interpLookup = new float[interpSize * interpSize * interpSize];
+
+            int xOffset = chunk.Position.x << 4;
+            int yOffset = chunk.Position.y << 4;
+            int zOffset = chunk.Position.z << 4;
+            int index = 0;
+
+            for (int x = 0; x < interpSize; x++)
+            {
+                float xf = (x << interpBitStep) + xOffset;
+
+                for (int y = 0; y < interpSize; y++)
+                {
+                    float yf = (y << interpBitStep) + yOffset;
+
+                    for (int z = 0; z < interpSize; z++)
+                    {
+                        float zf = (z << interpBitStep) + zOffset;
+
+                        float voxel = -yf;
+                        voxel += (float)this._noise.GetNoise(xf, yf, zf) * terrainScale;
+
+                        interpLookup[index++] = voxel;
+                    }
+                }
+            }
+
+            index = 0;
+
+            for (int x = 0; x < Chunk.Size; x++)
             {
                 for (int y = 0; y < Chunk.Size; y++)
                 {
-                    for (int x = 0; x < Chunk.Size; x++)
+                    for (int z = 0; z < Chunk.Size; z++)
                     {
-                        if (Mathf.Sqrt((float)(x - Chunk.Size / 2) * (x - Chunk.Size / 2) + (y - Chunk.Size / 2) * (y - Chunk.Size / 2) + (z - Chunk.Size / 2) * (z - Chunk.Size / 2)) <= Chunk.Size / 2)
+                        var a = VoxelInterpLookup(x, y, z, interpLookup);
+
+                        if (a > 0f)
                         {
-                            chunk[x, y, z] = new Block(BlockManager.GetBlock(1));
-            C:\Users\jonat\Projects\DvZ\Assets\Internal\Scripts\Runed.Voxel\Mesh\MeshBuilder.cs            }
+                            chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
+                        }
                         else
                         {
                             chunk[x, y, z] = new Block(BlockManager.GetBlock("air"));
                         }
                     }
                 }
-            }*/
-
-            int index = 0;
-            var noise = this._noise.GetNoiseSet(chunk.Position.x, chunk.Position.y, chunk.Position.z, Chunk.Size,
-                Chunk.Size, Chunk.Size);
-
-            for (int x = 0; x < 16; x++)
-            {
-                for (int z = 0; z < 16; z++)
-                {
-                    // Pseudo function to process data in noise set
-                    int g = 0;
-
-                    //Debug.Log(s);
-
-                    for (int y = 0; y < Chunk.Size; y++)
-                    {
-                        chunk[x, y, z] = new Block(BlockManager.GetBlock("air"));
-                    }
-
-
-                    if (chunk.Position.y % 2 != 0)
-                    {
-                        for (int y = 15; y > Mathf.Min(Mathf.Min(x, z), Chunk.Size); y--)
-                        {
-                            chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
-                        }
-                    }
-                    else
-                    {
-                        for (int y = 0; y < Mathf.Min(Mathf.Max(x, z), Chunk.Size); y++)
-                        {
-                            chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
-                        }
-                    }
-
-
-                }
             }
+        }
+
+        protected float[] GetInterpNoise(int noiseArrayIndex, Vector3Int chunkPos)
+        {
+            int offsetShift = Chunk.Size - interpBitStep;
+
+            return new []{0f};//this._noise.GetNoise(chunkPos.x << offsetShift,
+                //chunkPos.y << offsetShift, chunkPos.z << offsetShift, interpSize, interpSize, interpSize,
+                //1 << interpBitStep);
+        }
+
+        protected void SetInterpBitStep(int interpBitStep)
+        {
+            this.interpBitStep = interpBitStep;
+            this.interpSize = (Chunk.Size >> interpBitStep) + 1;
+            this.interpSizeSq = this.interpSize * this.interpSize;
+            this.interpScale = 1f / (1 << interpBitStep);
+        }
+
+        protected float VoxelInterpLookup(int localX, int localY, int localZ, float[] interpLookup)
+        {
+            var xs = (localX + 0.5f) * this.interpScale;
+            var ys = (localY + 0.5f) * this.interpScale;
+            var zs = (localZ + 0.5f) * this.interpScale;
+
+            var x0 = FastFloor(xs);
+            var y0 = FastFloor(ys);
+            var z0 = FastFloor(zs);
+
+            xs = xs - x0;
+            ys = ys - y0;
+            zs = zs - z0;
+
+            var lookupIndex = this.InterpLookupIndex(x0, y0, z0);
+
+            return Lerp(Lerp(
+                Lerp(interpLookup[lookupIndex], interpLookup[lookupIndex + this.interpSizeSq], xs),
+                Lerp(interpLookup[lookupIndex + this.interpSize],
+                    interpLookup[lookupIndex + this.interpSizeSq + this.interpSize], xs),
+                ys), Lerp(
+                Lerp(interpLookup[++lookupIndex], interpLookup[lookupIndex + this.interpSizeSq], xs),
+                Lerp(interpLookup[lookupIndex + this.interpSize],
+                    interpLookup[lookupIndex + this.interpSizeSq + this.interpSize], xs),
+                ys), zs);
+        }
+
+        protected int InterpLookupIndex(int interpX, int interpY, int interpZ)
+        {
+            return interpZ + interpY * this.interpSize + interpX * this.interpSizeSq;
+        }
+
+        private static float Lerp(float a, float b, float t)
+        {
+            return a + t * (b - a);
+        }
+
+        private static int FastFloor(float f)
+        {
+            return f >= 0.0f ? (int) f : (int) f - 1;
         }
     }
 }

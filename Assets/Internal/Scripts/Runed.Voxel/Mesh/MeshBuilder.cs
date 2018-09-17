@@ -21,13 +21,13 @@ namespace Runed.Voxel
                     {
                         var offsetPosition = new Vector3Int(x, y, z) + (chunk.Position * Chunk.Size);
 
-                        if (chunk[x, y, z] != null && chunk[x, y, z].Definition.Render)
+                        if (chunk[x, y, z].Definition.Render)
                         {
                             foreach (Direction direction in Enum.GetValues(typeof(Direction)))
                             {
                                 var adjacentBlock = chunk.World.GetAdjacentBlock(offsetPosition, direction);
 
-                                if (adjacentBlock == null || !adjacentBlock.Definition.Render ||
+                                if (adjacentBlock.Definition == BlockManager.GetBlock("air") || !adjacentBlock.Definition.Render ||
                                     adjacentBlock.Definition.HasCustomModel || adjacentBlock.Definition.Translucent &&
                                     adjacentBlock.Definition.Identifier != chunk[x, y, z].Definition.Identifier)
                                 {

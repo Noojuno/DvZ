@@ -39,10 +39,14 @@ namespace Runed.Voxel
             }
         }
 
+        //TODO: MIPMAPS
         private static void PackBlockTextures()
         {
-            TextureManager.BlockAtlas = new Texture2D(2048, 2048);
-            TextureManager.BlockAtlas.filterMode = FilterMode.Point;
+            TextureManager.BlockAtlas = new Texture2D(2048, 2048)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp
+            };
 
             var rects = TextureManager.BlockAtlas.PackTextures(Textures.Values.Select(x => x.Texture).ToArray(), 2, 2048, false);
 

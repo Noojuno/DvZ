@@ -13,19 +13,30 @@ namespace DvZ.Core
 
         public Vector3Int pos;
 
+        public ChunkRenderer ChunkGameObject;
+
         void Awake()
         {
             BlockManager.Initialize();
             TextureManager.Initialize();
+
+            for (int x = -2; x < 2; x++)
+            {
+                for (int y = -1; y < 1; y++)
+                {
+                    for (int z = -2; z < 2; z++)
+                    {
+                        ChunkRenderer chunk = Instantiate<ChunkRenderer>(this.ChunkGameObject, Vector3.zero, Quaternion.identity, this.transform);
+                        chunk.chunkPosition = new Vector3Int(x, y, z);
+                    }
+                }
+            } 
         }
 
         void Start()
         {
             this.texture = TextureManager.GetTexture("blocks:blocktesttwo").Texture;
             this.rect = TextureManager.GetTexture("blocks:blocktesttwo").UV;
-
-            //this.tex2 = Resources.Load<Texture2D>("Textures/lapis_ore");
-
         }
 
         void Update()
@@ -38,9 +49,18 @@ namespace DvZ.Core
 
         void OnGUI()
         {
-            if(GUI.Button(new Rect(10, 10, 100, 25), "Open Minecraft Level"))
+            if(GUI.Button(new Rect(10, 10, 100, 25), "Rebuild Chunks"))
             {
-                string path = EditorUtility.OpenFilePanel("Open level.dat", "", "dat");
+                var seed = Random.Range(1, 1000000);
+                WorldManager.Active.SetSeed(seed);
+
+                Debug.Log(seed);
+
+                foreach (var chunk in WorldManager.Active._chunks)
+                {
+                    WorldManager.Active.TerrainGenerator.Generate(chunk.Value);
+                    chunk.Value.Dirty = true;
+                }
             }
         }
     }

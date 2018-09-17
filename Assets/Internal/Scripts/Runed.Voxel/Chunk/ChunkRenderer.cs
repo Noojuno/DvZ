@@ -23,31 +23,11 @@ namespace Runed.Voxel
 
             this.mesh = new Mesh();
 
-            this.Chunk = new Chunk(WorldManager.Active, new Vector3Int(0, a, 0));
+            this.Chunk = new Chunk(WorldManager.Active, this.chunkPosition);
             a++;
 
             this.transform.position = this.Chunk.Position * Chunk.Size;
             this.gameObject.name = "Chunk " + this.Chunk.Position;
-
-
-            /* for (var x = 0; x < Chunk.Size; x++)
-            {
-                for (var z = 0; z < Chunk.Size; z++)
-                {
-                    for (var y = 0; y < Chunk.Size; y++)
-                    {
-                        if (y == 0  || (y == 1 && x >=4 && x <= 11) || (y == 2 && x >= 6 && x <= 9 && z >= 4 && z <= 11) || y == 8 || x == 0 && z == 0 )
-                        {
-                            this.Chunk.Blocks[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
-                        }
-                        else
-                        {
-
-                            this.Chunk.Blocks[x, y, z] = new Block(BlockManager.GetBlock("air"));
-                        }
-                    }
-                }
-            } */
 
             WorldManager.Active.TerrainGenerator.Generate(this.Chunk);
 

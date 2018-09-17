@@ -249,13 +249,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282840810}
-  m_LocalRotation: {x: -0.03870436, y: 0.9612455, z: -0.18797296, w: -0.19792743}
-  m_LocalPosition: {x: 15.3, y: 15.53, z: 26.98}
+  m_LocalRotation: {x: -0.03497683, y: 0.9646092, z: -0.16987006, w: -0.19862002}
+  m_LocalPosition: {x: 17.32, y: 8.82, z: 31.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 22.129002, y: -156.73001, z: 0}
+  m_LocalEulerAnglesHint: {x: 19.975, y: -156.73001, z: 0}
 --- !u!1 &1207756325
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +312,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture: {fileID: 0}
   tex2: {fileID: 0}
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   pos: {x: 0, y: 0, z: 0}
+  ChunkGameObject: {fileID: 2027186497}
 --- !u!1 &1905091297
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +365,7 @@ MonoBehaviour:
   mesh: {fileID: 0}
   meshFilter: {fileID: 0}
   meshRenderer: {fileID: 0}
-  chunkPosition: {x: 0, y: 1, z: 0}
+  chunkPosition: {x: 0, y: -5, z: 0}
 --- !u!23 &1905091300
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -446,7 +453,7 @@ MonoBehaviour:
   mesh: {fileID: 0}
   meshFilter: {fileID: 0}
   meshRenderer: {fileID: 0}
-  chunkPosition: {x: 0, y: 0, z: 0}
+  chunkPosition: {x: 0, y: -6, z: 0}
 --- !u!23 &2027186499
 MeshRenderer:
   m_ObjectHideFlags: 0
