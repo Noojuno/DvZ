@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Runed.Unity {
+namespace Runed.Utilities {
     public static class ObjectPool
     {
         public const int DEFAULT_SIZE = 3;

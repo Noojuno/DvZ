@@ -13,9 +13,12 @@ namespace Runed.Voxel
         public Vector3Int chunkPosition = Vector3Int.zero;
 
         public static int a = -1;
+        public static int b = -1;
+
+        public static int c = 0;
 
         // Use this for initialization
-        void Start()
+        void OnEnable()
         {
             this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();
@@ -23,6 +26,18 @@ namespace Runed.Voxel
 
             this.mesh = new Mesh();
 
+            this.chunkPosition = new Vector3Int(a, 0, b);
+
+            if (c == 0)
+            {
+                a++;
+                c++;
+            }
+            else
+            {
+                c--;
+                b++;
+            }
             this.Chunk = new Chunk(WorldManager.Active, this.chunkPosition);
             a++;
 

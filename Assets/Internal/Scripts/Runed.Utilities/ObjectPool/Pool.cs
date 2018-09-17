@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Runed.Unity
+namespace Runed.Utilities
 {
     public class Pool
     {
@@ -39,6 +39,7 @@ namespace Runed.Unity
             newGameObject.transform.position = position;
             newGameObject.transform.rotation = rotation;
             newGameObject.SetActive(true);
+
             return newGameObject;
         }
 

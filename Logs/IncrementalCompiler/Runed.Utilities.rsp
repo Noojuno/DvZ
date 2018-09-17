@@ -2,11 +2,9 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:E:/Projects/Games/DvZ/Temp/DvZ.Core.dll
+-out:E:/Projects/Games/DvZ/Temp/Runed.Utilities.dll
 -nostdlib
 -unsafe
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Runed.Voxel.dll
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Runed.Utilities.dll
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.AIModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.2.7f1\Editor\Data\Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -311,7 +309,7 @@
 -d:UNITY_TEAM_LICENSE
 -d:ENABLE_VSTU
 -d:UNITY_POST_PROCESSING_STACK_V2
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/DvZ.Core/BlockDefinitionTest.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/DvZ.Core/BlockDefinitionTestTwo.cs
--i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/DvZ.Core/Test.cs
+-i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Utilities/ObjectPool/ObjectPool.cs
+-i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Utilities/ObjectPool/Pool.cs
+-i:E:/Projects/Games/DvZ/Assets/Internal/Scripts/Runed.Utilities/ObjectPool/PoolMember.cs
 -v:0

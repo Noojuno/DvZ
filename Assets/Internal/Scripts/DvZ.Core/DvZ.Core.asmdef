@@ -1,7 +1,8 @@
 {
     "name": "DvZ.Core",
     "references": [
-        "Runed.Voxel"
+        "Runed.Voxel",
+        "Runed.Utilities"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
