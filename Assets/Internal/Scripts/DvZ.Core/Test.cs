@@ -14,14 +14,14 @@ namespace DvZ.Core
 
         public Vector3Int pos;
 
-        public GameObject ChunkGameObject;
+        public ChunkRenderer ChunkGameObject;
 
         void Awake()
         {
             BlockManager.Initialize();
             TextureManager.Initialize();
 
-            /* for (int x = -2; x < 2; x++)
+            for (int x = -2; x < 2; x++)
             {
                 for (int y = -1; y < 1; y++)
                 {
@@ -31,10 +31,10 @@ namespace DvZ.Core
                         chunk.chunkPosition = new Vector3Int(x, y, z);
                     }
                 }
-            } */
+            }
 
-            ObjectPool.Initialise(this.ChunkGameObject, 32);
-            ObjectPool.Spawn(this.ChunkGameObject, Vector3.zero, Quaternion.identity);
+            //ObjectPool.Initialise(this.ChunkGameObject, 32);
+            //ObjectPool.Spawn(this.ChunkGameObject, Vector3.zero, Quaternion.identity);
         }
 
         void Start()

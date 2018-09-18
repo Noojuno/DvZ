@@ -9,37 +9,20 @@ namespace Runed.Voxel
         public Mesh mesh;
         public MeshFilter meshFilter;
         public MeshRenderer meshRenderer;
+        public MeshCollider meshCollider;
 
         public Vector3Int chunkPosition = Vector3Int.zero;
 
-        public static int a = -1;
-        public static int b = -1;
-
-        public static int c = 0;
-
         // Use this for initialization
-        void OnEnable()
+        void Start()
         {
             this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();
+            this.meshCollider = this.GetComponent<MeshCollider>();
             this.meshRenderer.material.mainTexture = TextureManager.BlockAtlas;
 
             this.mesh = new Mesh();
-
-            this.chunkPosition = new Vector3Int(a, 0, b);
-
-            if (c == 0)
-            {
-                a++;
-                c++;
-            }
-            else
-            {
-                c--;
-                b++;
-            }
             this.Chunk = new Chunk(WorldManager.Active, this.chunkPosition);
-            a++;
 
             this.transform.position = this.Chunk.Position * Chunk.Size;
             this.gameObject.name = "Chunk " + this.Chunk.Position;
@@ -50,6 +33,7 @@ namespace Runed.Voxel
             this.Chunk.Dirty = true;
 
             this.meshFilter.sharedMesh = this.mesh;
+            this.meshCollider.sharedMesh = this.mesh;
         }
 
         void Update()
@@ -64,6 +48,7 @@ namespace Runed.Voxel
             {
                 this.mesh = MeshBuilder.BuildChunk(this.Chunk).ToMesh();
                 this.meshFilter.sharedMesh = this.mesh;
+                this.meshCollider.sharedMesh = this.mesh;
 
                 this.Chunk.Rendered = true;
             }

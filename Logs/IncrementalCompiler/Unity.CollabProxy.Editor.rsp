@@ -2,10 +2,9 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:E:/Projects/Games/DvZ/Temp/Unity.Properties.Editor.dll
+-out:E:/Projects/Games/DvZ/Temp/Unity.CollabProxy.Editor.dll
 -nostdlib
 -unsafe
--r:E:/Projects/Games/DvZ/Library/ScriptAssemblies/Unity.Properties.dll
 -r:"C:\Program Files\Unity\Hub\Editor\2018.3.0b1\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.3.0b1\Editor\Data\Managed/UnityEngine/UnityEngine.AIModule.dll"
 -r:"C:\Program Files\Unity\Hub\Editor\2018.3.0b1\Editor\Data\Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -309,27 +308,21 @@
 -d:ENABLE_BURST_AOT
 -d:UNITY_TEAM_LICENSE
 -d:UNITY_POST_PROCESSING_STACK_V2
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Generation/CSharp/CSharpContainerGenerator.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Generation/CSharp/CSharpGenerationBackend.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Generation/CSharp/CSharpGenerationCache.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Generation/GenerationBackend.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Generation/IL/CecilGenerationBackend.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Internal/Editor/CodeGenEditor.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Internal/Editor/JsonGenEditor.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Introspection/IntrospectedPropertyDefinition.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Introspection/ReflectionPropertyTree.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Introspection/RoslynPropertyTypeNode.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Json/JsonSchema.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Json/JsonSchemaBuilder.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/Json/Validator/JsonSchemaValidator.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/PropertyTree/IContainerTypeTreeVisitor.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/PropertyTree/IPropertyTypeNodeDeserializer.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/PropertyTree/IPropertyTypeNodeSerialiser.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/PropertyTree/PropertyTypeNode.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/PropertyTree/PropertyTypeNodeJsonSerializer.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/PropertyTree/Resolver/ContainerTypeCollector.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/PropertyTree/Resolver/ContainerTypeTreePath.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/PropertyTree/Resolver/TypeResolver.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/PropertyTree/UserHookFlags.cs
--i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.properties@0.2.11-preview/Editor/Serialization/ReferenceAssemblies.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/AssemblyInfo.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Bootstrap.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/CollabAnalytics.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/CollabHistoryWindow.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/CollabToolbarButton.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/CollabToolbarWindow.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Presenters/CollabHistoryPresenter.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/BuildStatusButton.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/CollabHistoryDropDown.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/CollabHistoryDropDownItem.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/CollabHistoryItem.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/CollabHistoryItemFactory.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/CollabHistoryRevisionLine.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/HistoryProgressSpinner.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/ICollabHistoryItemFactory.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/PagedListView.cs
+-i:E:/Projects/Games/DvZ/Library/PackageCache/com.unity.collab-proxy@1.2.9/Editor/Collab/Views/StatusView.cs
 -v:0
