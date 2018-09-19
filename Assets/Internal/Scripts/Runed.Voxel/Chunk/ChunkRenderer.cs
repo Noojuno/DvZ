@@ -14,7 +14,7 @@ namespace Runed.Voxel
         public Vector3Int chunkPosition = Vector3Int.zero;
 
         // Use this for initialization
-        void Start()
+        public void Start()
         {
             this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();

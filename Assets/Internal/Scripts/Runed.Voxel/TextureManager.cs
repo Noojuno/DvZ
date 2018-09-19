@@ -23,7 +23,7 @@ namespace Runed.Voxel
 
         private static void RegisterBlockTextures()
         {
-            foreach (var blockType in BlockManager.BlockTypes)
+            foreach (var blockType in BlockManager.BlockDefinitions)
             {
                 var blockId = blockType.Value.Identifier;
 

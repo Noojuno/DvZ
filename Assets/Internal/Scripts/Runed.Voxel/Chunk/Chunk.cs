@@ -23,6 +23,7 @@ namespace Runed.Voxel
         {
             this.World = world;
             this.Position = position;
+
             this.World.AddChunk(this);
             this.Blocks = new Block[Chunk.Size, Chunk.Size, Chunk.Size];
         }
@@ -80,14 +81,22 @@ namespace Runed.Voxel
         /// </summary>
         /// <param name="index">The index as a Vector3i.</param>
         /// <returns></returns>
-        public Block this[Vector3 index] => this[(int)index.x, (int)index.y, (int)index.z];
+        public Block this[Vector3 index]
+        {
+            get => this[(int)index.x, (int)index.y, (int)index.z];
+            set => this[(int)index.x, (int)index.y, (int)index.z] = value;
+        }
 
         /// <summary>
         /// Gets the block at the given index.
         /// </summary>
         /// <param name="index">The index as a Vector3i.</param>
         /// <returns></returns>
-        public Block this[Vector3Int index] => this[index.x, index.y, index.z];
+        public Block this[Vector3Int index]
+        {
+            get => this[index.x, index.y, index.z];
+            set => this[index.x, index.y, index.z] = value;
+        } 
 
     }
 }

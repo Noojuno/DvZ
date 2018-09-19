@@ -21,7 +21,7 @@ namespace Runed.Voxel
         public static int MinZ = -100;
 
         public TerrainGenerator TerrainGenerator;
-        public readonly Dictionary<Vector3Int, Chunk> _chunks;
+        public Dictionary<Vector3Int, Chunk> _chunks;
 
         public World(int seed)
         {
@@ -49,8 +49,34 @@ namespace Runed.Voxel
 
             Vector3Int chunkPos = new Vector3Int(chunkX, chunkY, chunkZ);
 
+            int blockX = Mathf.Abs(worldPos.x - (chunkX * Chunk.Size));
+            int blockY = Mathf.Abs(worldPos.y - (chunkY * Chunk.Size));
+            int blockZ = Mathf.Abs(worldPos.z - (chunkZ * Chunk.Size));
 
-            if (!this.ChunkExistsAt(chunkPos)) return new Block(BlockManager.GetBlock("air"));
+            Vector3Int blockPos = new Vector3Int(blockX, blockY, blockZ);
+
+            if (!this.ChunkExistsAt(chunkPos) || blockX >= Chunk.Size || blockY >= Chunk.Size || blockZ >= Chunk.Size) return new Block(BlockManager.GetBlock("air"));
+
+            return this._chunks[chunkPos][blockPos];
+        }
+
+        public void SetBlock(int x, int y, int z, BlockDefinition blockDefinition)
+        {
+            this.SetBlock(new Vector3Int(x, y, z), blockDefinition);
+        }
+
+        public void SetBlock(Vector3 worldPos, BlockDefinition blockDefinition)
+        {
+            this.SetBlock(Vector3Int.FloorToInt(worldPos), blockDefinition);
+        }
+
+        public void SetBlock(Vector3Int worldPos, BlockDefinition blockDefinition)
+        {
+            int chunkX = worldPos.x >> (int)Mathf.Sqrt(Chunk.Size);
+            int chunkY = worldPos.y >> (int)Mathf.Sqrt(Chunk.Size);
+            int chunkZ = worldPos.z >> (int)Mathf.Sqrt(Chunk.Size);
+
+            Vector3Int chunkPos = new Vector3Int(chunkX, chunkY, chunkZ);
 
             int blockX = Mathf.Abs(worldPos.x - (chunkX * Chunk.Size));
             int blockY = Mathf.Abs(worldPos.y - (chunkY * Chunk.Size));
@@ -58,10 +84,10 @@ namespace Runed.Voxel
 
             Vector3Int blockPos = new Vector3Int(blockX, blockY, blockZ);
 
+            if (!this.ChunkExistsAt(chunkPos) || blockX >= Chunk.Size || blockY >= Chunk.Size ||
+                blockZ >= Chunk.Size) return;
 
-            if (blockX >= Chunk.Size || blockY >= Chunk.Size || blockZ >= Chunk.Size) return new Block(BlockManager.GetBlock("air"));
-
-            return this._chunks[chunkPos][blockPos];
+            this._chunks[chunkPos][blockPos] = new Block(blockDefinition);
         }
 
         public Chunk GetChunk(Vector3Int position)

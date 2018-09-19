@@ -7,19 +7,22 @@ namespace Runed.Voxel
 {
     public static class BlockManager
     {
-        public static Dictionary<int, BlockDefinition> BlockTypes = new Dictionary<int, BlockDefinition>();
-        public static int NextAvailableId => BlockManager.BlockTypes.Count > 0 ? BlockManager.BlockTypes.Keys.Max() + 1 : 0;
+        public static Dictionary<int, BlockDefinition> BlockDefinitions = new Dictionary<int, BlockDefinition>();
+        public static int NextAvailableId => BlockManager.BlockDefinitions.Count > 0 ? BlockManager.BlockDefinitions.Keys.Max() + 1 : 0;
 
+        //TODO: GET AUTO REFLECTION WORKING
         public static void Initialize()
         {
-            BlockManager.BlockTypes = new Dictionary<int, BlockDefinition>();
+            BlockManager.BlockDefinitions = new Dictionary<int, BlockDefinition>();
 
-            Dictionary<string, int> map = new Dictionary<string, int> {{"air", 0}};
+            /* Dictionary<string, int> map = new Dictionary<string, int> {{"air", 0}};
 
             var blockDefinitions = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(x => x.GetTypes().Where(y => y.IsClass && y.BaseType == typeof(BlockDefinition)))
                 .Select(x => Activator.CreateInstance(x) as BlockDefinition)
                 .ToArray();
+
+            Debug.Log(blockDefinitions[0]);
 
             var orderedDefinitions = blockDefinitions.OrderBy(e => map.ContainsKey(e.Identifier) ? 0 : 1);
 
@@ -34,18 +37,20 @@ namespace Runed.Voxel
 
                 Debug.Log($"Name: {blockDefinition.DisplayName}, Identifier: {blockDefinition.Identifier}, Numeric: {id}");
 
-                BlockManager.BlockTypes[id] = blockDefinition;
-            }
+                BlockManager.BlockDefinitions[id] = blockDefinition;
+            } */
+
+            BlockManager.BlockDefinitions.Add(0, new BlockDefinitionAir());
         }
 
         public static BlockDefinition GetBlock(string identifier)
         {
-            return BlockTypes.Values.First(x => x.Identifier == identifier);
+            return BlockDefinitions.Values.First(x => x.Identifier == identifier);
         }
 
         public static BlockDefinition GetBlock(int id)
         {
-            return BlockManager.BlockTypes[id];
+            return BlockManager.BlockDefinitions[id];
         }
 
         public static string[] Load()
@@ -55,7 +60,7 @@ namespace Runed.Voxel
 
         public static string Export()
         {
-            /* var list = BlockTypes.Select(kv => $"{kv.Key};{kv.Value.Identifier}").ToArray();
+            /* var list = BlockDefinitions.Select(kv => $"{kv.Key};{kv.Value.Identifier}").ToArray();
             var json = JsonConvert.SerializeObject(list);
             return json; */
 
