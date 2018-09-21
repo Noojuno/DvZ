@@ -20,7 +20,7 @@ namespace Runed.Voxel
 
         public virtual bool HasCustomModel { get; }
 
-        private TextureAsset texture;
+        private readonly TextureAsset texture;
 
         public BlockDefinition()
         {

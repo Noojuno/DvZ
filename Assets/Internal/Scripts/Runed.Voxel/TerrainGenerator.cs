@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using FastNoiseC;
+using Random = UnityEngine.Random;
 
 namespace Runed.Voxel
 {
@@ -93,7 +94,15 @@ namespace Runed.Voxel
 
                         if (a > 0f)
                         {
-                            chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
+                            var number = Random.Range(0, 2);
+                            if (number == 0)
+                            {
+                                chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
+                            }
+                            else
+                            {
+                                chunk[x, y, z] = new Block(BlockManager.GetBlock("test"));
+                            }
                         }
                         else
                         {

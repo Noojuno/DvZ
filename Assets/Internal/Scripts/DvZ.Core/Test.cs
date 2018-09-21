@@ -36,6 +36,7 @@ namespace DvZ.Core
                     for (int z = -2; z < 2; z++)
                     {
                         var g = SimplePool.Spawn(this.ChunkGameObject, Vector3.zero, Quaternion.identity);
+                        g.transform.SetParent(this.WorldGameObject.transform);
                         g.GetComponent<ChunkRenderer>().chunkPosition = new Vector3Int(x, y, z);
                     }
                 }
