@@ -24,7 +24,6 @@ namespace Runed.Voxel
             this.World = world;
             this.Position = position;
 
-            this.World.AddChunk(this);
             this.Blocks = new Block[Chunk.Size, Chunk.Size, Chunk.Size];
         }
 

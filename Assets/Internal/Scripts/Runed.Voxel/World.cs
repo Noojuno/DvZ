@@ -31,11 +31,6 @@ namespace Runed.Voxel
             this._chunks = new Dictionary<Vector3Int, Chunk>();
         }
 
-        public void AddChunk(Chunk chunk)
-        {
-            this._chunks[chunk.Position] = chunk;
-        }
-
         public Block GetBlock(int x, int y, int z)
         {
             return this.GetBlock(new Vector3Int(x, y, z));
@@ -88,6 +83,14 @@ namespace Runed.Voxel
                 blockZ >= Chunk.Size) return;
 
             this._chunks[chunkPos][blockPos] = new Block(blockDefinition);
+        }
+
+        public Chunk CreateChunk(Vector3Int position)
+        {
+            var chunk = new Chunk(this, position);
+            this._chunks[position] = chunk;
+
+            return chunk;
         }
 
         public Chunk GetChunk(Vector3Int position)

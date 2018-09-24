@@ -21,12 +21,14 @@ namespace Runed.Voxel
         {
             WorldManager.Instance = this;
             this.Worlds = new List<World>();
+
+            this._activeWorld = new World(6969);
+            this.RegisterWorld(this._activeWorld);
         }
 
         void Start()
         {
-            this._activeWorld = new World(6969);
-            this.RegisterWorld(this._activeWorld);
+
         }
 
         public void RegisterWorld(World world)

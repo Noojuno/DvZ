@@ -22,15 +22,9 @@ namespace Runed.Voxel
             this.meshRenderer.material.mainTexture = TextureManager.BlockAtlas;
 
             this.mesh = new Mesh();
-            this.Chunk = new Chunk(WorldManager.Active, this.chunkPosition);
 
             this.transform.position = this.Chunk.Position * Chunk.Size;
             this.gameObject.name = "Chunk " + this.Chunk.Position;
-
-            WorldManager.Active.TerrainGenerator.Generate(this.Chunk);
-
-            this.Chunk.Loaded = true;
-            this.Chunk.Dirty = true;
 
             this.meshFilter.sharedMesh = this.mesh;
             this.meshCollider.sharedMesh = this.mesh;

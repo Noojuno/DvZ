@@ -24,12 +24,12 @@ namespace DvZ.Core
 
             //ChunkPool.Initialize(this.ChunkGameObject, this.WorldGameObject, 32);
 
-            SimplePool.Preload(this.ChunkGameObject, 32);
+            //SimplePool.Preload(this.ChunkGameObject, 32);
         }
 
         void Start()
         {
-            for (int x = -2; x < 2; x++)
+            /* for (int x = -2; x < 2; x++)
             {
                 for (int y = -1; y < 1; y++)
                 {
@@ -40,7 +40,7 @@ namespace DvZ.Core
                         g.GetComponent<ChunkRenderer>().chunkPosition = new Vector3Int(x, y, z);
                     }
                 }
-            }
+            } */
         }
 
         void OnGUI()
