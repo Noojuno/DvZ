@@ -45,7 +45,14 @@ namespace Runed.Voxel
 
         public static BlockDefinition GetBlock(string identifier)
         {
-            return BlockDefinitions.Values.First(x => x.Identifier == identifier);
+            var def = BlockDefinitions.Values.First(x => x.Identifier == identifier);
+
+            if (def == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            return def;
         }
 
         public static BlockDefinition GetBlock(int id)

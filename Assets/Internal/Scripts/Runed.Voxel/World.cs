@@ -44,15 +44,24 @@ namespace Runed.Voxel
 
             Vector3Int chunkPos = new Vector3Int(chunkX, chunkY, chunkZ);
 
+            if(!this.ChunkExistsAt(chunkPos)) return new Block(BlockManager.GetBlock("air"));
+
             int blockX = Mathf.Abs(worldPos.x - (chunkX * Chunk.Size));
             int blockY = Mathf.Abs(worldPos.y - (chunkY * Chunk.Size));
             int blockZ = Mathf.Abs(worldPos.z - (chunkZ * Chunk.Size));
 
             Vector3Int blockPos = new Vector3Int(blockX, blockY, blockZ);
 
-            if (!this.ChunkExistsAt(chunkPos) || blockX >= Chunk.Size || blockY >= Chunk.Size || blockZ >= Chunk.Size) return new Block(BlockManager.GetBlock("air"));
+            if (blockX >= Chunk.Size || blockY >= Chunk.Size || blockZ >= Chunk.Size) return new Block(BlockManager.GetBlock("air"));
 
-            return this._chunks[chunkPos][blockPos];
+            var b = this._chunks[chunkPos][blockPos];
+
+            if (b.Definition == null)
+            {
+                //Debug.Log($"c: {chunkPos} p: {blockPos} b: {b}");
+            }
+
+            return b;
         }
 
         public void SetBlock(int x, int y, int z, BlockDefinition blockDefinition)

@@ -31,5 +31,11 @@ namespace Runed.Voxel
         {
             return this.texture;
         }
+
+        //TODO
+        public virtual string GetRegistryName()
+        {
+            return "";
+        }
     }
 }

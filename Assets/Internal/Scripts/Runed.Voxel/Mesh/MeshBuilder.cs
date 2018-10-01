@@ -27,8 +27,12 @@ namespace Runed.Voxel
                             {
                                 var adjacentBlock = chunk.World.GetAdjacentBlock(offsetPosition, direction);
 
-                                if (adjacentBlock.Definition == BlockManager.GetBlock("air") || !adjacentBlock.Definition.Render ||
-                                    adjacentBlock.Definition.HasCustomModel || adjacentBlock.Definition.Translucent &&
+                                //if(adjacentBlock.Definition == null) Debug.Log($"b: {x} {y} {z} c: {chunk.Position} o: {offsetPosition} z: {chunk.Position * Chunk.Size} a: {offsetPosition.AdjustByDirection(direction)} d: {direction}");
+
+                                if (adjacentBlock.Definition == BlockManager.GetBlock("air") ||
+                                    !adjacentBlock.Definition.Render ||
+                                    adjacentBlock.Definition.HasCustomModel ||
+                                    adjacentBlock.Definition.Translucent &&
                                     adjacentBlock.Definition.Identifier != chunk[x, y, z].Definition.Identifier)
                                 {
                                     meshData.AddQuad(new Vector3(x, y, z), direction, chunk[x, y, z].Definition.GetTexture(direction).UV);

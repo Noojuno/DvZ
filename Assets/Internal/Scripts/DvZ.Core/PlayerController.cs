@@ -27,7 +27,7 @@ namespace DvZ.Core
 
             for (int x = 0; x < this.LoadRadius; x++)
             {
-                for (int y = 0; y < this.LoadRadius; y++)
+                for (int y = -1; y < this.LoadRadius; y++)
                 {
                     for (int z = 0; z < this.LoadRadius; z++)
                     {

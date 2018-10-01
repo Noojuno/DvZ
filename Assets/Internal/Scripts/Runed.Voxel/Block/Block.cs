@@ -11,6 +11,11 @@ namespace Runed.Voxel
 
         public Block(BlockDefinition definition)
         {
+            if (definition == null)
+            {
+                throw new NullReferenceException();
+            }
+
             this.Definition = definition;
         }
     }

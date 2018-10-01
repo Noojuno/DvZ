@@ -1,7 +1,11 @@
-﻿using Runed.Voxel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Runed.Voxel;
 using UnityEditor;
 using UnityEngine;
 using Runed.Utilities;
+using Random = UnityEngine.Random;
 
 namespace DvZ.Core
 {
@@ -21,6 +25,28 @@ namespace DvZ.Core
             BlockManager.BlockDefinitions.Add(2, new BlockDefinitionTestTwo());
 
             TextureManager.Initialize();
+
+
+            var a = new Vector3Int(0, 15, 0) + new Vector3Int(0, 0, 0) * Chunk.Size; // 0 - 15
+            var b = new Vector3Int(0, 15, 0) + new Vector3Int(0, 1, 0) * Chunk.Size; // 16 - 31
+            var c = new Vector3Int(0, 15, 0) + new Vector3Int(0, -1, 0) * Chunk.Size; // -16 - -1
+
+
+            List<Vector3Int> d = new List<Vector3Int>();
+
+            d.Add(a);
+            d.Add(b);
+            d.Add(c);
+
+            foreach (var pos in d)
+            {
+                Debug.Log(pos);
+
+                foreach (Direction direction in Enum.GetValues(typeof(Direction)))
+                {
+                    Debug.Log(direction + " " + pos.AdjustByDirection(direction));
+                }
+            }
 
             //ChunkPool.Initialize(this.ChunkGameObject, this.WorldGameObject, 32);
 
