@@ -34,7 +34,7 @@ namespace Runed.Voxel
                                     adjacentBlock.Definition.Translucent &&
                                     adjacentBlock.Definition.Identifier != chunk[x, y, z].Definition.Identifier)
                                 {
-                                    meshData.AddQuad(new Vector3(x, y, z), direction, chunk[x, y, z].Definition.GetTexture(direction).UV);
+                                    meshData.AddQuad(new Vector3(x, y, z), 0, direction, 1);
                                 }
                             }
                         }

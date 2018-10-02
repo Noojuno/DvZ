@@ -1,71 +1,52 @@
-﻿// Upgrade NOTE: replaced 'glstate.matrix.modelview[0]' with 'UNITY_MATRIX_MV'
-// Upgrade NOTE: replaced 'glstate.matrix.mvp' with 'UNITY_MATRIX_MVP'
-// Upgrade NOTE: replaced 'glstate.matrix.projection' with 'UNITY_MATRIX_P'
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Outlined Diffuse"
+// Directly taken from Unity doco
+Shader "Example/Sample2DArrayTexture"
 {
-    Properties
-    {
-        _Color ("Main Color", Color) = (.5,.5,.5,1)
-        _OutlineColor ("Outline Color", Color) = (0,1,0,1)
-        _Outline ("Outline width", Range (0.002, 0.03)) = 0.01
-        _MainTex ("Base (RGB)", 2D) = "white" { }
-        //Not needed
-        //_ToonShade ("ToonShader Cubemap(RGB)", CUBE) = "" { Texgen CubeNormal }
-    }
- 
-    SubShader
-    {
-        Tags { "RenderType"="Opaque" }
-        //Minor switch
-        //UsePass "Toon/Basic/BASE"
-        UsePass "Diffuse/BASE"
-        Pass
-        {
-            Name "OUTLINE"
-            Tags { "LightMode" = "Always" }
-           
-            CGPROGRAM
-// Upgrade NOTE: excluded shader from DX11; has structs without semantics (struct appdata members vertex,normal)
-#pragma exclude_renderers d3d11
-            #pragma vertex vert
- 
-            struct appdata {
-                float4 vertex;
-                float3 normal;
-            };
- 
-            struct v2f {
-                float4 pos : POSITION;
-                float4 color : COLOR;
-                float fog : FOGC;
-            };
-            uniform float _Outline;
-            uniform float4 _OutlineColor;
- 
-            v2f vert(appdata v) {
-                v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                float3 norm = mul ((float3x3)UNITY_MATRIX_MV, v.normal);
-                norm.x *= UNITY_MATRIX_P[0][0];
-                norm.y *= UNITY_MATRIX_P[1][1];
-                o.pos.xy += norm.xy * o.pos.z * _Outline;
-   
-                o.fog = o.pos.z;
-                o.color = _OutlineColor;
-                return o;
-            }
-            ENDCG
-           
-            Cull Front
-            ZWrite On
-            ColorMask RGB
-            Blend SrcAlpha OneMinusSrcAlpha
-            //? -Note: I don't remember why I put a "?" here
-            SetTexture [_MainTex] { combine primary }
-        }
-    }
-   
-    Fallback "Diffuse"
+	Properties
+	{
+		_MyArr("Tex", 2DArray) = "" {}
+		_SliceRange("Slices", Range(1,24)) = 0
+		_UVScale("UVScale", Float) = 1.0
+	}
+	SubShader
+	{
+		Pass
+		{
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			// to use texture arrays we need to target DX10/OpenGLES3 which
+			// is shader model 3.5 minimum
+			#pragma target 3.5
+
+			#include "UnityCG.cginc"
+
+			struct v2f
+			{
+				float3 uv : TEXCOORD0;
+				float4 vertex : SV_POSITION;
+			};
+
+			float _SliceRange;
+			float _UVScale;
+
+			v2f vert(float4 vertex : POSITION)
+			{
+				v2f o;
+				o.vertex = UnityObjectToClipPos(vertex);
+				o.uv.xy = (vertex.xy + 0.5) * _UVScale;
+				o.uv.z = (vertex.z + 0.5) * _SliceRange;
+				return o;
+			}
+
+			UNITY_DECLARE_TEX2DARRAY(_MyArr);
+
+			half4 frag(v2f i) : SV_Target
+			{
+				return UNITY_SAMPLE_TEX2DARRAY(_MyArr, i.uv);
+			}
+			ENDCG
+		}
+	}
 }

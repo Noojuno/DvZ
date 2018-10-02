@@ -12,7 +12,7 @@ namespace Runed.Voxel
         protected List<List<int>> triangles = new List<List<int>>();
 
         [SerializeField]
-        protected List<Vector2> uv = new List<Vector2>();
+        protected List<Vector3> uv = new List<Vector3>();
 
         [SerializeField]
         protected List<Vector3> vertices = new List<Vector3>();
@@ -48,7 +48,7 @@ namespace Runed.Voxel
 
         public virtual List<List<int>> Triangles => this.triangles;
 
-        public virtual List<Vector2> UV => this.uv;
+        public virtual List<Vector3> UV => this.uv;
 
         public virtual void AddVertex(Vector3 vertex)
         {
@@ -86,7 +86,12 @@ namespace Runed.Voxel
             this.AddQuad(position, 0, direction, uv);
         }
 
-        public virtual void AddQuad(Vector3 position, int subMesh, Direction direction, Rect uv)
+        public virtual void AddQuad(Vector3 position, int subMesh, Direction direction, int layer)
+        {
+            this.AddQuad(position, subMesh, direction, new Rect(0, 0, 1, 1), layer);
+        }
+
+        public virtual void AddQuad(Vector3 position, int subMesh, Direction direction, Rect uv, int layer = 0)
         {
             switch (direction)
             {
@@ -134,10 +139,10 @@ namespace Runed.Voxel
             this.triangles[subMesh].Add(this.vertices.Count - 3);
             this.triangles[subMesh].Add(this.vertices.Count - 1);
             this.triangles[subMesh].Add(this.vertices.Count - 2);
-            this.uv.Add(new Vector2(uv.x + uv.width, uv.y));
-            this.uv.Add(new Vector2(uv.x, uv.y));
-            this.uv.Add(new Vector2(uv.x + uv.width, uv.y + uv.height));
-            this.uv.Add(new Vector2(uv.x, uv.y + uv.height));
+            this.uv.Add(new Vector3(uv.x + uv.width, uv.y));
+            this.uv.Add(new Vector3(uv.x, uv.y));
+            this.uv.Add(new Vector3(uv.x + uv.width, uv.y + uv.height));
+            this.uv.Add(new Vector3(uv.x, uv.y + uv.height));
         }
 
         public virtual Mesh ToMesh()
@@ -146,7 +151,8 @@ namespace Runed.Voxel
             mesh.subMeshCount = this.triangles.Count;
             mesh.vertices = this.vertices.ToArray();
             for (var i = 0; i < this.triangles.Count; i++) mesh.SetTriangles(this.triangles[i], i, true);
-            mesh.uv = this.uv.ToArray();
+            mesh.SetUVs(0, UV);
+            //mesh.uv = this.uv.ToArray();
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
             mesh.RecalculateTangents();

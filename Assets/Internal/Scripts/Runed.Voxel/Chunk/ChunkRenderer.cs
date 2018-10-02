@@ -19,7 +19,8 @@ namespace Runed.Voxel
             this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();
             this.meshCollider = this.GetComponent<MeshCollider>();
-            this.meshRenderer.material.mainTexture = TextureManager.BlockAtlas;
+            this.meshRenderer.material.mainTexture = TextureManager.BlockArray;
+            //this.meshRenderer.material.SetTexture("Tex", TextureManager.BlockArray);
 
             this.mesh = new Mesh();
 

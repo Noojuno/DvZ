@@ -11,7 +11,9 @@ namespace Runed.Voxel
     public static class TextureManager
     {
         public static Dictionary<string, TextureAsset> Textures;
-        public static Texture2D BlockAtlas;
+        public static Texture2DArray BlockArray;
+
+        public static int BlockTextureSize = 16;
 
         public static void Initialize()
         {
@@ -43,22 +45,29 @@ namespace Runed.Voxel
         private static void PackBlockTextures()
         {
 
+            var blockArray = new Texture2DArray(16, 16, Textures.Count, TextureFormat.ARGB32, true);
+            blockArray.filterMode = FilterMode.Point;
+            blockArray.wrapMode = TextureWrapMode.Clamp;
 
-            //var a = new Texture2DArray(2048, 2048, );
-
-            TextureManager.BlockAtlas = new Texture2D(2048, 2048)
+            int x = 0;
+            for (int i = 0; i < TextureManager.Textures.Count; i++)
             {
-                filterMode = FilterMode.Point,
-                wrapMode = TextureWrapMode.Clamp
-            };
+                var textureAsset = TextureManager.Textures.Values.ToArray()[i];
 
-            var rects = TextureManager.BlockAtlas.PackTextures(Textures.Values.Select(x => x.Texture).ToArray(), 2, 2048, false);
+                if (textureAsset.Texture == null) continue;
 
-            int i = 0;
+                blockArray.SetPixels(textureAsset.Texture.GetPixels(0), x++, 0);
+            }
+
+            int z = 0;
             foreach (var texture in Textures.Values)
             {
-                texture.UV = rects[i++];
+                texture.UV = new Rect(0, 0, 1, 1);//rects[z++];
             }
+
+            Debug.Log(blockArray.width + " " + blockArray.height + " " + blockArray.dimension + " " + blockArray);
+
+            TextureManager.BlockArray = blockArray;
         }
 
         public static void RegisterTexture(string key, TextureAsset texture)
