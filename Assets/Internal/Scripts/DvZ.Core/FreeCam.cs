@@ -98,7 +98,7 @@ namespace DvZ.Core
 
                     Debug.Log($"{hit.point} {aPos} {bPos} {dirS} {dirZ}");
 
-                    WorldManager.Active.SetBlock(aPos, BlockManager.GetBlock("air"));
+                    WorldManager.Active.SetBlock(aPos, BlockDefinition.Air);
                 }
             }
 

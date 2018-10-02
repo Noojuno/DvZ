@@ -26,13 +26,12 @@ namespace DvZ.Core
 
             TextureManager.Initialize();
 
-
             var a = new Vector3Int(0, 15, 0) + new Vector3Int(0, 0, 0) * Chunk.Size; // 0 - 15
             var b = new Vector3Int(0, 15, 0) + new Vector3Int(0, 1, 0) * Chunk.Size; // 16 - 31
             var c = new Vector3Int(0, 15, 0) + new Vector3Int(0, -1, 0) * Chunk.Size; // -16 - -1
 
 
-            List<Vector3Int> d = new List<Vector3Int>();
+            /* List<Vector3Int> d = new List<Vector3Int>();
 
             d.Add(a);
             d.Add(b);
@@ -46,7 +45,7 @@ namespace DvZ.Core
                 {
                     Debug.Log(direction + " " + pos.AdjustByDirection(direction));
                 }
-            }
+            } */
 
             //ChunkPool.Initialize(this.ChunkGameObject, this.WorldGameObject, 32);
 

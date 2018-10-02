@@ -90,7 +90,7 @@ namespace Runed.Voxel
                 {
                     for (int z = 0; z < Chunk.Size; z++)
                     {
-                        /* var a = VoxelInterpLookup(x, y, z, interpLookup);
+                        var a = VoxelInterpLookup(x, y, z, interpLookup);
 
                         if (a > 0f)
                         {
@@ -106,10 +106,9 @@ namespace Runed.Voxel
                         }
                         else
                         {
-                            chunk[x, y, z] = new Block(BlockManager.GetBlock("air"));
-                        }*/
+                            chunk[x, y, z] = new Block(BlockDefinition.Air);
+                        }
 
-                        chunk[x, y, z] = new Block(BlockManager.GetBlock("test"));
                     }
                 }
             }

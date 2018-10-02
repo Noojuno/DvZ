@@ -40,7 +40,7 @@ namespace Runed.Voxel
                 BlockManager.BlockDefinitions[id] = blockDefinition;
             } */
 
-            BlockManager.BlockDefinitions.Add(0, new BlockDefinitionAir());
+            BlockManager.BlockDefinitions.Add(0, BlockDefinition.Air);
         }
 
         public static BlockDefinition GetBlock(string identifier)

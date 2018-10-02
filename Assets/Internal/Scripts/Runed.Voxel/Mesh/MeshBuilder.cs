@@ -27,9 +27,8 @@ namespace Runed.Voxel
                             {
                                 var adjacentBlock = chunk.World.GetAdjacentBlock(offsetPosition, direction);
 
-                                //if(adjacentBlock.Definition == null) Debug.Log($"b: {x} {y} {z} c: {chunk.Position} o: {offsetPosition} z: {chunk.Position * Chunk.Size} a: {offsetPosition.AdjustByDirection(direction)} d: {direction}");
-
-                                if (adjacentBlock.Definition == BlockManager.GetBlock("air") ||
+                                if (adjacentBlock.Definition == null ||
+                                    adjacentBlock.Definition == BlockDefinition.Air ||
                                     !adjacentBlock.Definition.Render ||
                                     adjacentBlock.Definition.HasCustomModel ||
                                     adjacentBlock.Definition.Translucent &&

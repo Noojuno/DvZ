@@ -34,8 +34,8 @@ namespace Runed.Voxel
         {
             if (Input.GetKeyUp(KeyCode.L))
             {
-                this.Chunk[4, 8, 4] = new Block(BlockManager.GetBlock("air"));
-                this.Chunk[4, 8, 4] = new Block(BlockManager.GetBlock("air"));
+                this.Chunk[4, 8, 4] = new Block(BlockDefinition.Air);
+                this.Chunk[4, 8, 4] = new Block(BlockDefinition.Air);
             }
 
             if (this.Chunk != null && this.Chunk.Loaded && this.Chunk.Dirty)

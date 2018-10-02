@@ -21,10 +21,13 @@ namespace DvZ.Core
         public int MaxActive = 4;
         public int CurrActive = 0;
 
-        void Start()
+        void Awake()
         {
             SimplePool.Preload(this.ChunkPrefab, this.LoadRadius ^ 3);
+        }
 
+        void Start()
+        {
             for (int x = 0; x < this.LoadRadius; x++)
             {
                 for (int y = -1; y < this.LoadRadius; y++)

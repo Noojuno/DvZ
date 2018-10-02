@@ -18,5 +18,6 @@ namespace Runed.Voxel
 
             this.Definition = definition;
         }
+
     }
 }

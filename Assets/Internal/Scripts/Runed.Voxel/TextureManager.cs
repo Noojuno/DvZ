@@ -42,6 +42,10 @@ namespace Runed.Voxel
         //TODO: MIPMAPS
         private static void PackBlockTextures()
         {
+
+
+            //var a = new Texture2DArray(2048, 2048, );
+
             TextureManager.BlockAtlas = new Texture2D(2048, 2048)
             {
                 filterMode = FilterMode.Point,

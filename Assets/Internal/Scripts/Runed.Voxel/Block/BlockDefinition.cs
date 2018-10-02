@@ -9,6 +9,8 @@ namespace Runed.Voxel
 {
     public class BlockDefinition
     {
+        public static BlockDefinition Air = new BlockDefinitionAir();
+
         public virtual string Identifier { get; }
         public virtual string DisplayName { get; }
 

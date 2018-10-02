@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runed.Voxel
 {
-    public class Chunk
+    public class Chunk : IDisposable
     {
         // STATIC VARIABLES
         public static int Size = 16;
@@ -37,6 +37,11 @@ namespace Runed.Voxel
 
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            this.Blocks = null;
         }
 
         /// <summary>
