@@ -65,8 +65,6 @@ namespace Runed.Voxel
                 texture.UV = new Rect(0, 0, 1, 1);//rects[z++];
             }
 
-            Debug.Log(blockArray.width + " " + blockArray.height + " " + blockArray.dimension + " " + blockArray);
-
             TextureManager.BlockArray = blockArray;
         }
 
