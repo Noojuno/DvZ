@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Runed.Voxel
 {
@@ -13,14 +14,27 @@ namespace Runed.Voxel
 
         public Vector3Int chunkPosition = Vector3Int.zero;
 
+        public List<Texture2D> tex;
+
         // Use this for initialization
         public void Start()
         {
+            this.tex = new List<Texture2D>();
+
             this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();
             this.meshCollider = this.GetComponent<MeshCollider>();
-            this.meshRenderer.material.mainTexture = TextureManager.BlockArray;
-            //this.meshRenderer.material.SetTexture("Tex", TextureManager.BlockArray);
+            //this.meshRenderer.material.mainTexture = TextureManager.BlockArray;
+            this.meshRenderer.material.SetTexture("_MyArr", TextureManager.BlockArray);
+
+            for (int c = 0; c < TextureManager.BlockArray.depth; c++)
+            {
+                var t = new Texture2D(16, 16);
+                t.SetPixels(TextureManager.BlockArray.GetPixels(c));
+                t.Apply();
+
+                this.tex.Add(t);
+            }
 
             this.mesh = new Mesh();
 
