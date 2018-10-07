@@ -139,10 +139,10 @@ namespace Runed.Voxel
             this.triangles[subMesh].Add(this.vertices.Count - 3);
             this.triangles[subMesh].Add(this.vertices.Count - 1);
             this.triangles[subMesh].Add(this.vertices.Count - 2);
-            this.uv.Add(new Vector3(uv.x + uv.width, uv.y));
-            this.uv.Add(new Vector3(uv.x, uv.y));
-            this.uv.Add(new Vector3(uv.x + uv.width, uv.y + uv.height));
-            this.uv.Add(new Vector3(uv.x, uv.y + uv.height));
+            this.uv.Add(new Vector3(uv.x + uv.width, uv.y, layer));
+            this.uv.Add(new Vector3(uv.x, uv.y, layer));
+            this.uv.Add(new Vector3(uv.x + uv.width, uv.y + uv.height, layer));
+            this.uv.Add(new Vector3(uv.x, uv.y + uv.height, layer));
         }
 
         public virtual Mesh ToMesh()
@@ -151,7 +151,7 @@ namespace Runed.Voxel
             mesh.subMeshCount = this.triangles.Count;
             mesh.vertices = this.vertices.ToArray();
             for (var i = 0; i < this.triangles.Count; i++) mesh.SetTriangles(this.triangles[i], i, true);
-            mesh.SetUVs(0, UV);
+            mesh.SetUVs(0, this.UV);
             //mesh.uv = this.uv.ToArray();
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
