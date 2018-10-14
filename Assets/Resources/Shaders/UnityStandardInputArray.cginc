@@ -59,9 +59,9 @@ struct VertexInput
     float4 vertex   : POSITION;
     half3 normal    : NORMAL;
     float3 uv0      : TEXCOORD0;
-    float3 uv1      : TEXCOORD1;
+    float2 uv1      : TEXCOORD1;
 #if defined(DYNAMICLIGHTMAP_ON) || defined(UNITY_PASS_META)
-    float3 uv2      : TEXCOORD2;
+    float2 uv2      : TEXCOORD2;
 #endif
 #ifdef _TANGENT_TO_WORLD
     half4 tangent   : TANGENT;
@@ -72,10 +72,9 @@ struct VertexInput
 float4 TexCoords(VertexInput v)
 {
     float4 texcoord;
-    texcoord.xy = TRANSFORM_TEX(v.uv0, _MainTex); // Always source from uv0
-	texcoord.xy = TRANSFORM_TEX(v.uv0.xy, _MainTex); 
+    texcoord.xy = TRANSFORM_TEX(v.uv0.xy, _MainTex); 
 	texcoord.z = v.uv0.z;
-    texcoord.zw = TRANSFORM_TEX(((_UVSec == 0) ? v.uv0 : v.uv1), _DetailAlbedoMap);
+    //texcoord.zw = TRANSFORM_TEX(((_UVSec == 0) ? v.uv0 : v.uv1), _DetailAlbedoMap);
     return texcoord;
 }
 
@@ -86,7 +85,7 @@ half DetailMask(float3 uv)
 
 half3 Albedo(float4 texcoords)
 {
-    half3 albedo = _Color.rgb * UNITY_SAMPLE_TEX2DARRAY(_MainTex, texcoords).rgb;
+    half3 albedo = _Color.rgb * UNITY_SAMPLE_TEX2DARRAY (_MainTex, texcoords.xyz).rgb;
 #if _DETAIL
     #if (SHADER_TARGET < 30)
         // SM20: instruction count limitation

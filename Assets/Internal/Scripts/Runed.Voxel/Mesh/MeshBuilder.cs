@@ -20,8 +20,9 @@ namespace Runed.Voxel
                     for (int z = 0; z < Chunk.Size; z++)
                     {
                         var offsetPosition = new Vector3Int(x, y, z) + (chunk.Position * Chunk.Size);
+                        var block = chunk[x, y, z];
 
-                        if (chunk[x, y, z].Definition.Render)
+                        if (block.Definition.Render)
                         {
                             foreach (Direction direction in Enum.GetValues(typeof(Direction)))
                             {
@@ -34,7 +35,7 @@ namespace Runed.Voxel
                                     adjacentBlock.Definition.Translucent &&
                                     adjacentBlock.Definition.Identifier != chunk[x, y, z].Definition.Identifier)
                                 {
-                                    meshData.AddQuad(new Vector3(x, y, z), 0, direction, 1);
+                                    meshData.AddQuad(new Vector3(x, y, z), 0, direction, block.Definition.GetTexture(direction).Layer);
                                 }
                             }
                         }

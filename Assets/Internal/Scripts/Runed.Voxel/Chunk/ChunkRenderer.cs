@@ -24,8 +24,8 @@ namespace Runed.Voxel
             this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();
             this.meshCollider = this.GetComponent<MeshCollider>();
-            //this.meshRenderer.material.mainTexture = TextureManager.BlockArray;
-            this.meshRenderer.material.SetTexture("_MyArr", TextureManager.BlockArray);
+            this.meshRenderer.material.mainTexture = TextureManager.BlockArray;
+            //this.meshRenderer.material.SetTexture("_Textures", TextureManager.BlockArray);
 
             for (int c = 0; c < TextureManager.BlockArray.depth; c++)
             {

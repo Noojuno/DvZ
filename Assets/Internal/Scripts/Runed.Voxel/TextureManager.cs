@@ -56,14 +56,19 @@ namespace Runed.Voxel
 
                 if (textureAsset.Texture == null) continue;
 
-                blockArray.SetPixels(textureAsset.Texture.GetPixels(0), x++, 0);
+                var layer = x++;
+
+                blockArray.SetPixels(textureAsset.Texture.GetPixels(0), layer, 0);
+                textureAsset.Layer = layer;
             }
 
-            int z = 0;
+            blockArray.Apply(true);
+
+            /* int z = 0;
             foreach (var texture in Textures.Values)
             {
                 texture.UV = new Rect(0, 0, 1, 1);//rects[z++];
-            }
+            } */
 
             TextureManager.BlockArray = blockArray;
         }

@@ -14,6 +14,8 @@ namespace Runed.Voxel
         public Rect UV;
         public Texture2D Texture;
 
+        public int Layer;
+
         public static TextureAsset blank = new TextureAsset("Textures/Blocks/empty", "blank");
 
         public TextureAsset(string path, string assetIdentifier)

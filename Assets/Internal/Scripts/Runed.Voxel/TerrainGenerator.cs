@@ -94,8 +94,7 @@ namespace Runed.Voxel
 
                         if (a > 0f)
                         {
-                            var number = Random.Range(0, 2);
-                            if (number == 0)
+                            if (y % 2 == 0)
                             {
                                 chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
                             }
