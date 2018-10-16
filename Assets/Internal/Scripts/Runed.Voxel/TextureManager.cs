@@ -63,13 +63,6 @@ namespace Runed.Voxel
             }
 
             blockArray.Apply(true);
-
-            /* int z = 0;
-            foreach (var texture in Textures.Values)
-            {
-                texture.UV = new Rect(0, 0, 1, 1);//rects[z++];
-            } */
-
             TextureManager.BlockArray = blockArray;
         }
 
@@ -86,11 +79,6 @@ namespace Runed.Voxel
             }
 
             return TextureManager.Textures[key];
-        }
-
-        public static TextureAsset GetBlockTexture(BlockDefinition blockDefinition)
-        {
-            return TextureManager.GetTexture($"blocks:{blockDefinition.Identifier}");
         }
     }
 }

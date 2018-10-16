@@ -31,12 +31,8 @@ namespace Runed.Voxel
             this._chunks = new Dictionary<Vector3Int, Chunk>();
         }
 
-        public Block GetBlock(int x, int y, int z)
-        {
-            return this.GetBlock(new Vector3Int(x, y, z));
-        }
-
-        public Block GetBlock(Vector3Int worldPos)
+        //TODO: rename
+        public Vector3Int[] WorldPosToBlockChunk(Vector3Int worldPos)
         {
             int chunkX = worldPos.x >> (int)Mathf.Sqrt(Chunk.Size);
             int chunkY = worldPos.y >> (int)Mathf.Sqrt(Chunk.Size);
@@ -44,22 +40,25 @@ namespace Runed.Voxel
 
             Vector3Int chunkPos = new Vector3Int(chunkX, chunkY, chunkZ);
 
-            if(!this.ChunkExistsAt(chunkPos)) return new Block(BlockDefinition.Air);
-
             int blockX = Mathf.Abs(worldPos.x - (chunkX * Chunk.Size));
             int blockY = Mathf.Abs(worldPos.y - (chunkY * Chunk.Size));
             int blockZ = Mathf.Abs(worldPos.z - (chunkZ * Chunk.Size));
 
             Vector3Int blockPos = new Vector3Int(blockX, blockY, blockZ);
 
-            if (blockX >= Chunk.Size || blockY >= Chunk.Size || blockZ >= Chunk.Size) return new Block(BlockDefinition.Air);
-
-            return this._chunks[chunkPos][blockPos];
+            return new[] { chunkPos, blockPos };
         }
 
-        public void SetBlock(int x, int y, int z, BlockDefinition blockDefinition)
+        public Block GetBlock(Vector3Int worldPos)
         {
-            this.SetBlock(new Vector3Int(x, y, z), blockDefinition);
+            var positions = this.WorldPosToBlockChunk(worldPos);
+            var chunkPos = positions[0];
+            var blockPos = positions[1];
+
+            if (!this.ChunkExistsAt(chunkPos) || !this._chunks[chunkPos].Loaded) return new Block(BlockDefinition.Air);
+            if (blockPos.x >= Chunk.Size || blockPos.y >= Chunk.Size || blockPos.z >= Chunk.Size) return new Block(BlockDefinition.Air);
+
+            return this._chunks[chunkPos][blockPos];
         }
 
         public void SetBlock(Vector3 worldPos, BlockDefinition blockDefinition)
@@ -69,20 +68,11 @@ namespace Runed.Voxel
 
         public void SetBlock(Vector3Int worldPos, BlockDefinition blockDefinition)
         {
-            int chunkX = worldPos.x >> (int)Mathf.Sqrt(Chunk.Size);
-            int chunkY = worldPos.y >> (int)Mathf.Sqrt(Chunk.Size);
-            int chunkZ = worldPos.z >> (int)Mathf.Sqrt(Chunk.Size);
+            var positions = this.WorldPosToBlockChunk(worldPos);
+            var chunkPos = positions[0];
+            var blockPos = positions[1];
 
-            Vector3Int chunkPos = new Vector3Int(chunkX, chunkY, chunkZ);
-
-            int blockX = Mathf.Abs(worldPos.x - (chunkX * Chunk.Size));
-            int blockY = Mathf.Abs(worldPos.y - (chunkY * Chunk.Size));
-            int blockZ = Mathf.Abs(worldPos.z - (chunkZ * Chunk.Size));
-
-            Vector3Int blockPos = new Vector3Int(blockX, blockY, blockZ);
-
-            if (!this.ChunkExistsAt(chunkPos) || blockX >= Chunk.Size || blockY >= Chunk.Size ||
-                blockZ >= Chunk.Size) return;
+            if (!this.ChunkExistsAt(chunkPos) || blockPos.x >= Chunk.Size || blockPos.y >= Chunk.Size || blockPos.z >= Chunk.Size) return;
 
             this._chunks[chunkPos][blockPos] = new Block(blockDefinition);
         }
@@ -115,26 +105,10 @@ namespace Runed.Voxel
             return this.GetBlock(position.AdjustByDirection(direction));
         }
 
-        public string DumpChunks()
-        {
-            var s = "";
-
-            foreach (var chunk in this._chunks.Keys)
-            {
-                s += chunk.ToString() + ", ";
-            }
-
-            return s;
-        }
 
         public bool ChunkExistsAt(Vector3Int position)
         {
             return this._chunks.ContainsKey(position);
-        }
-
-        public bool HasAdjacentChunk(Vector3Int position, Direction direction)
-        {
-            return false;
         }
 
         public void SetSeed(int seed)

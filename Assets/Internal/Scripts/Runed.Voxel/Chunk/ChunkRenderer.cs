@@ -25,6 +25,7 @@ namespace Runed.Voxel
             this.meshRenderer = this.GetComponent<MeshRenderer>();
             this.meshCollider = this.GetComponent<MeshCollider>();
             this.meshRenderer.material.mainTexture = TextureManager.BlockArray;
+            this.meshRenderer.materials[1].mainTexture = TextureManager.BlockArray;
             //this.meshRenderer.material.SetTexture("_Textures", TextureManager.BlockArray);
 
             for (int c = 0; c < TextureManager.BlockArray.depth; c++)
@@ -37,6 +38,11 @@ namespace Runed.Voxel
             }
 
             this.mesh = new Mesh();
+
+            var ty = this.Chunk.World.WorldPosToBlockChunk(new Vector3Int(100, 127, 16));
+
+            Debug.Log($"{ty[0]} {ty[1]}");
+
 
             this.transform.position = this.Chunk.Position * Chunk.Size;
             this.gameObject.name = "Chunk " + this.Chunk.Position;

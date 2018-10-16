@@ -75,7 +75,7 @@ namespace Runed.Voxel
                         float zf = (z << interpBitStep) + zOffset;
 
                         float voxel = -yf;
-                        voxel += (float)this._noise.GetNoise(xf, yf, zf) * terrainScale;
+                        voxel += (float) this._noise.GetNoise(xf, yf, zf) * terrainScale;
 
                         interpLookup[index++] = voxel;
                     }
@@ -90,11 +90,9 @@ namespace Runed.Voxel
                 {
                     for (int z = 0; z < Chunk.Size; z++)
                     {
-                        var a = VoxelInterpLookup(x, y, z, interpLookup);
-
-                        if (a > 0f)
+                        if (y % 4 != 0)
                         {
-                            if (y % 2 == 0)
+                            if (x % 2 == 0)
                             {
                                 chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
                             }
@@ -107,19 +105,20 @@ namespace Runed.Voxel
                         {
                             chunk[x, y, z] = new Block(BlockDefinition.Air);
                         }
-
                     }
                 }
             }
+
+            chunk.Loaded = true;
         }
 
         protected float[] GetInterpNoise(int noiseArrayIndex, Vector3Int chunkPos)
         {
             int offsetShift = Chunk.Size - interpBitStep;
 
-            return new []{0f};//this._noise.GetNoise(chunkPos.x << offsetShift,
-                //chunkPos.y << offsetShift, chunkPos.z << offsetShift, interpSize, interpSize, interpSize,
-                //1 << interpBitStep);
+            return new[] {0f}; //this._noise.GetNoise(chunkPos.x << offsetShift,
+            //chunkPos.y << offsetShift, chunkPos.z << offsetShift, interpSize, interpSize, interpSize,
+            //1 << interpBitStep);
         }
 
         protected void SetInterpBitStep(int interpBitStep)

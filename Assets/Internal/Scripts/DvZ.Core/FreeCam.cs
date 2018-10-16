@@ -24,11 +24,12 @@ namespace DvZ.Core
         private Vector3 lookPos;
 
         private Vector3 lastHitStart;
-        private float lastHitEnd;
+        private Vector3 lastHitEnd;
+        private Vector3 lastHitEnd2;
 
         public void OnGUI()
         {
-            GUI.Label(new Rect(10, 150, 150, 25), $"{this.lookPos}");
+            GUI.Label(new Rect(10, 150, 250, 25), $"Looking at: {this.lookPos}");
         }
 
         public void Update()
@@ -73,72 +74,33 @@ namespace DvZ.Core
             {
                 this.lookPos = hit.point;
 
-                var hitPoint = hit.point + new Vector3(0.5f, 0.5f, 0.5f);
-
                 if (Input.GetMouseButtonUp(0))
                 {
-                    var vec = new Vector3Int(Mathf.FloorToInt(hitPoint.x), Mathf.FloorToInt(hitPoint.y),
-                        Mathf.FloorToInt(hitPoint.z));
+                    this.SetBlockAt(hit, BlockDefinition.Air);
+                }
 
-                    this.lastHitStart = transform.position;
-                    this.lastHitEnd = hit.distance;
-
-                    var pos = hit.point;
-                    var dir = fwd.normalized;
-                    dir = Quaternion.Inverse(Quaternion.identity) * dir;
-
-                    Vector3Int dirS = Vector3Int.RoundToInt(new Vector3(dir.x > 0 ? 1 : -1, dir.y > 0 ? 1 : -1, dir.z > 0 ? 1 : -1));
-                    var dirZ = Vector3Int.FloorToInt(new Vector3(dir.x > 0 ? 1 : -1, dir.y > 0 ? 1 : -1, dir.z > 0 ? 1 : -1));
-
-                    var aPos = new Vector3Int(ResolveBlockPos(pos.x, dirS.x), ResolveBlockPos(pos.y, dirS.y),
-                        ResolveBlockPos(pos.z, dirS.z));
-
-                    var bPos = new Vector3Int(AResolveBlockPos(pos.x, dirS.x), AResolveBlockPos(pos.y, dirS.y),
-                        AResolveBlockPos(pos.z, dirS.z));
-
-                    Debug.Log($"{hit.point} {aPos} {bPos} {dirS} {dirZ}");
-
-                    WorldManager.Active.SetBlock(aPos, BlockDefinition.Air);
+                if (Input.GetMouseButtonUp(1))
+                {
+                    this.SetBlockAt(hit, BlockManager.GetBlock("test"), true);
                 }
             }
 
-            if (this.lastHitEnd != null && this.lastHitStart != null)
-            {
-                Debug.DrawRay(this.lastHitStart, transform.TransformDirection(Vector3.forward) * (this.lastHitEnd + 0.5f),
-                    Color.yellow);
-            }
+            Debug.DrawLine(this.lastHitStart, this.lastHitEnd, Color.yellow);
         }
 
-        private static int ResolveBlockPos(float pos, int dirS)
+        public void SetBlockAt(RaycastHit hit, BlockDefinition block, bool adjacent = false)
         {
-            float fPos = pos + 0.5f;
-            int iPos = (int)fPos;
+            int multiplier = adjacent ? 1 : -1;
 
-            if (Math.Abs(fPos - iPos) < 0.001f)
-            {
-                if (dirS == 1)
-                    return iPos;
+            Vector3Int position = Vector3IntUtil.FloorFromVector3(hit.point + hit.normal * (multiplier * 0.5f));
+            position.x += 1;
 
-                return iPos - 1;
-            }
+            this.lastHitStart = transform.position;
+            this.lastHitEnd = position;
 
-            return Mathf.RoundToInt(pos);
-        }
+            Debug.Log($"{hit.point} {position} {hit.normal}");
 
-        private static int AResolveBlockPos(float pos, int dirS)
-        {
-            float fPos = pos + 0.5f;
-            int iPos = (int)fPos;
-
-            if (Math.Abs(fPos - iPos) < 0.001f)
-            {
-                if (dirS == -1)
-                    return iPos;
-
-                return iPos - 1;
-            }
-
-            return Mathf.RoundToInt(pos);
+            WorldManager.Active.SetBlock(position, block);
         }
     }
 }

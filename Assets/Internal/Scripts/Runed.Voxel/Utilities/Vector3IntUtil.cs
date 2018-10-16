@@ -33,5 +33,23 @@ namespace Runed.Voxel
 
             return position;
         }
+
+        public static Vector3Int FloorFromVector3(Vector3 vector)
+        {
+            int x = Mathf.FloorToInt(vector.x);
+            int y = Mathf.FloorToInt(vector.y);
+            int z = Mathf.FloorToInt(vector.z);
+
+            return new Vector3Int(x, y, z);
+        }
+
+        public static Vector3Int RoundFromVector3(Vector3 vector)
+        {
+            int x = Mathf.RoundToInt(vector.x);
+            int y = Mathf.RoundToInt(vector.y);
+            int z = Mathf.RoundToInt(vector.z);
+
+            return new Vector3Int(x, y, z);
+        }
     }
 }

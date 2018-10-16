@@ -64,7 +64,6 @@ namespace DvZ.Core
 
             g.GetComponent<ChunkRenderer>().Chunk = chunk;
 
-            chunk.Loaded = true;
             chunk.Dirty = true;
 
             this.CurrActive--;

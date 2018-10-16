@@ -11,7 +11,7 @@ namespace Runed.Voxel
     {
         public static MeshData BuildChunk(Chunk chunk)
         {
-            var meshData = new MeshData();
+            var meshData = new MeshData(2);
 
             for (int x = 0; x < Chunk.Size; x++)
             {
@@ -27,15 +27,15 @@ namespace Runed.Voxel
                             foreach (Direction direction in Enum.GetValues(typeof(Direction)))
                             {
                                 var adjacentBlock = chunk.World.GetAdjacentBlock(offsetPosition, direction);
+                                var o = offsetPosition.AdjustByDirection(direction);
 
-                                if (adjacentBlock.Definition == null ||
-                                    adjacentBlock.Definition == BlockDefinition.Air ||
-                                    !adjacentBlock.Definition.Render ||
-                                    adjacentBlock.Definition.HasCustomModel ||
-                                    adjacentBlock.Definition.Translucent &&
-                                    adjacentBlock.Definition.Identifier != chunk[x, y, z].Definition.Identifier)
+                                //if (chunk.Position == Vector3Int.zero && adjacentBlock.Definition.Translucent) Debug.Log($"B: d {block.Definition} o {offsetPosition} p {x} {y} {z} direction {direction} A: d {adjacentBlock.Definition} o {o} {adjacentBlock.Definition.Translucent}");
+
+                                if (!adjacentBlock.Definition.Render || !adjacentBlock.Definition.Translucent && adjacentBlock.Definition.Identifier != block.Definition.Identifier)
                                 {
-                                    meshData.AddQuad(new Vector3(x, y, z), 0, direction, block.Definition.GetTexture(direction).Layer);
+                                    int meshLayer = block.Definition.Translucent ? 1 : 0;
+
+                                    meshData.AddQuad(new Vector3(x, y, z), meshLayer, direction, block.Definition.GetTexture(direction).Layer);
                                 }
                             }
                         }
