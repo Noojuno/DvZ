@@ -2,6 +2,7 @@
 using System.Security.Principal;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace Runed.Voxel
 {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Runed.Voxel;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace DvZ.Core
 {
@@ -21,13 +22,10 @@ namespace DvZ.Core
         public int MaxActive = 4;
         public int CurrActive = 0;
 
-        void Awake()
-        {
-            SimplePool.Preload(this.ChunkPrefab, this.LoadRadius ^ 3);
-        }
-
         void Start()
         {
+            SimplePool.Preload(this.ChunkPrefab, this.LoadRadius ^ 3);
+
             for (int x = 0; x < this.LoadRadius; x++)
             {
                 for (int y = -1; y < this.LoadRadius; y++)
@@ -37,9 +35,16 @@ namespace DvZ.Core
                         var pos = new Vector3Int(x, y, z);
 
                         this.ChunkQueue.Enqueue(pos);
-                        WorldManager.Active.CreateChunk(pos);
                     }
                 }
+            }
+        }
+
+        void OnGUI()
+        {
+            if (GUI.Button(new Rect(10, 40, 100, 25), "Add Chunk"))
+            {
+                this.ChunkQueue.Enqueue(new Vector3Int(16, Random.Range(-100, 100), 16));
             }
         }
 
@@ -55,7 +60,7 @@ namespace DvZ.Core
         void LoadNext()
         {
             var pos = this.ChunkQueue.Dequeue();
-            var chunk = WorldManager.Active.GetChunk(pos);
+            var chunk = WorldManager.Active.CreateChunk(pos);
 
             var g = SimplePool.Spawn(this.ChunkPrefab, Vector3.zero, Quaternion.identity);
             g.transform.SetParent(this.WorldTransform);

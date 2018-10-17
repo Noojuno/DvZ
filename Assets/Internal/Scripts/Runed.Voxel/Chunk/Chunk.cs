@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Runed.Voxel
 {
-    public class Chunk : IDisposable
+    public class Chunk
     {
         // STATIC VARIABLES
         public static int Size = 16;
@@ -51,7 +51,7 @@ namespace Runed.Voxel
         /// <param name="y">The y coordinate of the block</param>
         /// <param name="z">The z coordinate of the block</param>
         /// <returns></returns>
-        public Block this[int x, int y, int z]
+        public Block this[int x, int y, int z, bool dirty = true]
         {
             get
             {
@@ -73,10 +73,13 @@ namespace Runed.Voxel
 
                 if (x == Chunk.Size - 1 || y == Chunk.Size - 1 || z == Chunk.Size - 1)
                 {
-                    this.RebuildAdjacentChunks();
+                    //this.RebuildAdjacentChunks();
                 }
 
-                this.Dirty = true;
+                if (dirty)
+                {
+                    this.Dirty = true;
+                }
             }
         }
 
@@ -85,9 +88,9 @@ namespace Runed.Voxel
         /// </summary>
         /// <param name="index">The index as a Vector3i.</param>
         /// <returns></returns>
-        public Block this[Vector3 index]
+        public Block this[Vector3 index, bool dirty = true]
         {
-            get => this[(int)index.x, (int)index.y, (int)index.z];
+            get => this[(int)index.x, (int)index.y, (int)index.z, dirty];
             set => this[(int)index.x, (int)index.y, (int)index.z] = value;
         }
 
@@ -96,9 +99,9 @@ namespace Runed.Voxel
         /// </summary>
         /// <param name="index">The index as a Vector3i.</param>
         /// <returns></returns>
-        public Block this[Vector3Int index]
+        public Block this[Vector3Int index, bool dirty = true]
         {
-            get => this[index.x, index.y, index.z];
+            get => this[index.x, index.y, index.z, dirty];
             set => this[index.x, index.y, index.z] = value;
         } 
 

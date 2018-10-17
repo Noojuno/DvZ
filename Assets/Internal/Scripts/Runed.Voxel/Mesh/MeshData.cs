@@ -17,6 +17,9 @@ namespace Runed.Voxel
         [SerializeField]
         protected List<Vector3> vertices = new List<Vector3>();
 
+        [SerializeField]
+        protected List<Vector3> normals = new List<Vector3>();
+
         public MeshData() : this(1)
         {
         }
@@ -50,9 +53,16 @@ namespace Runed.Voxel
 
         public virtual List<Vector3> UV => this.uv;
 
+        public virtual List<Vector3> Normals => this.normals;
+
         public virtual void AddVertex(Vector3 vertex)
         {
             this.vertices.Add(vertex);
+        }
+
+        public virtual void AddNormal(Vector3 normal)
+        {
+            this.normals.Add(normal);
         }
 
         public virtual void AddTriangle(int subMesh, int triangle)
@@ -61,7 +71,7 @@ namespace Runed.Voxel
             this.triangles[subMesh].Add(triangle);
         }
 
-        public virtual void AddUV(Vector2 uv)
+        public virtual void AddUV(Vector3 uv)
         {
             this.uv.Add(uv);
         }

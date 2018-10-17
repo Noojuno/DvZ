@@ -41,7 +41,7 @@ namespace Runed.Voxel
             if (chunkRenderers.Count >= maxSize || !chunkRenderers.Peek().gameObject.activeInHierarchy)
             {
                 chunkRenderer = chunkRenderers.Dequeue();
-                chunkRenderer.chunkPosition = position;
+                //chunkRenderer.chunkPosition = position;
                 chunkRenderer.gameObject.SetActive(true);
 
                 chunkRenderer.Start();
@@ -50,7 +50,7 @@ namespace Runed.Voxel
             {
                 var gameObject = GameObject.Instantiate(chunkRendererPrefab, Vector3.zero, Quaternion.identity);
                 chunkRenderer = gameObject.GetComponent<ChunkRenderer>();
-                chunkRenderer.chunkPosition = position;
+                //chunkRenderer.chunkPosition = position;
             }
 
             chunkRenderers.Enqueue(chunkRenderer);

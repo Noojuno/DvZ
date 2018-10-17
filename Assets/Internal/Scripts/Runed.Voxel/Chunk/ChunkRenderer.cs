@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace Runed.Voxel
 {
@@ -12,37 +14,21 @@ namespace Runed.Voxel
         public MeshRenderer meshRenderer;
         public MeshCollider meshCollider;
 
-        public Vector3Int chunkPosition = Vector3Int.zero;
+        public MeshData meshData;
 
-        public List<Texture2D> tex;
+        private bool _building = false;
 
         // Use this for initialization
         public void Start()
         {
-            this.tex = new List<Texture2D>();
-
             this.meshFilter = this.GetComponent<MeshFilter>();
             this.meshRenderer = this.GetComponent<MeshRenderer>();
             this.meshCollider = this.GetComponent<MeshCollider>();
             this.meshRenderer.material.mainTexture = TextureManager.BlockArray;
-            this.meshRenderer.materials[1].mainTexture = TextureManager.BlockArray;
+            //this.meshRenderer.materials[1].mainTexture = TextureManager.BlockArray;
             //this.meshRenderer.material.SetTexture("_Textures", TextureManager.BlockArray);
 
-            for (int c = 0; c < TextureManager.BlockArray.depth; c++)
-            {
-                var t = new Texture2D(16, 16);
-                t.SetPixels(TextureManager.BlockArray.GetPixels(c));
-                t.Apply();
-
-                this.tex.Add(t);
-            }
-
             this.mesh = new Mesh();
-
-            var ty = this.Chunk.World.WorldPosToBlockChunk(new Vector3Int(100, 127, 16));
-
-            Debug.Log($"{ty[0]} {ty[1]}");
-
 
             this.transform.position = this.Chunk.Position * Chunk.Size;
             this.gameObject.name = "Chunk " + this.Chunk.Position;
@@ -51,21 +37,31 @@ namespace Runed.Voxel
             this.meshCollider.sharedMesh = this.mesh;
         }
 
+        private void BuildChunk()
+        {
+            this._building = true;
+            Profiler.BeginSample("Build Chunk " + this.Chunk.Position);
+            this.meshData = MeshBuilder.CreateGreedyMesh(this.Chunk);
+            Profiler.EndSample();
+            this._building = false;
+        }
+
         void Update()
         {
-            if (Input.GetKeyUp(KeyCode.L))
+            if (this.Chunk != null && this.Chunk.Loaded)
             {
-                this.Chunk[4, 8, 4] = new Block(BlockDefinition.Air);
-                this.Chunk[4, 8, 4] = new Block(BlockDefinition.Air);
-            }
+                if (this.Chunk.Dirty && !this._building)
+                {
+                    ThreadPool.QueueUserWorkItem(c => BuildChunk());
+                }
+                else if (this.Chunk.Rendered)
+                {
+                    this.mesh = this.meshData.ToMesh();
+                    this.meshFilter.sharedMesh = this.mesh;
+                    this.meshCollider.sharedMesh = this.mesh;
 
-            if (this.Chunk != null && this.Chunk.Loaded && this.Chunk.Dirty)
-            {
-                this.mesh = MeshBuilder.BuildChunk(this.Chunk).ToMesh();
-                this.meshFilter.sharedMesh = this.mesh;
-                this.meshCollider.sharedMesh = this.mesh;
-
-                this.Chunk.Rendered = true;
+                    this.Chunk.Rendered = false;
+                }
             }
         }
     }

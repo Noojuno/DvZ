@@ -74,7 +74,7 @@ namespace DvZ.Core
             {
                 this.lookPos = hit.point;
 
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButton(0))
                 {
                     this.SetBlockAt(hit, BlockDefinition.Air);
                 }
@@ -93,12 +93,11 @@ namespace DvZ.Core
             int multiplier = adjacent ? 1 : -1;
 
             Vector3Int position = Vector3IntUtil.FloorFromVector3(hit.point + hit.normal * (multiplier * 0.5f));
-            position.x += 1;
 
             this.lastHitStart = transform.position;
             this.lastHitEnd = position;
 
-            Debug.Log($"{hit.point} {position} {hit.normal}");
+            //Debug.Log($"{hit.point} {position} {hit.normal}");
 
             WorldManager.Active.SetBlock(position, block);
         }

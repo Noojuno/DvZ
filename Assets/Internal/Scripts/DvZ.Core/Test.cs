@@ -87,7 +87,7 @@ namespace DvZ.Core
             if (GUI.Button(new Rect(10, 40, 100, 25), "Add Chunk"))
             {
                 var g = SimplePool.Spawn(this.ChunkGameObject, Vector3.zero, Quaternion.identity);
-                g.GetComponent<ChunkRenderer>().chunkPosition = new Vector3Int(0, -testY++, 0);
+                //g.GetComponent<ChunkRenderer>().chunkPosition = new Vector3Int(0, -testY++, 0);
 
                 //ChunkPool.Create(new Vector3Int(0, -testY++, 0));
             }

@@ -84,6 +84,10 @@ namespace Runed.Voxel
 
             index = 0;
 
+            var air = new Block(BlockDefinition.Air);
+            var test = new Block(BlockManager.GetBlock("test"));
+            var testtwo = new Block(BlockManager.GetBlock("blocktesttwo"));
+
             for (int x = 0; x < Chunk.Size; x++)
             {
                 for (int y = 0; y < Chunk.Size; y++)
@@ -94,21 +98,22 @@ namespace Runed.Voxel
                         {
                             if (x % 2 == 0)
                             {
-                                chunk[x, y, z] = new Block(BlockManager.GetBlock("blocktesttwo"));
+                                chunk[x, y, z, false] = testtwo;
                             }
                             else
                             {
-                                chunk[x, y, z] = new Block(BlockManager.GetBlock("test"));
+                                chunk[x, y, z, false] = test;
                             }
                         }
                         else
                         {
-                            chunk[x, y, z] = new Block(BlockDefinition.Air);
+                            chunk[x, y, z, false] = air;
                         }
                     }
                 }
             }
 
+            chunk.Dirty = true;
             chunk.Loaded = true;
         }
 
