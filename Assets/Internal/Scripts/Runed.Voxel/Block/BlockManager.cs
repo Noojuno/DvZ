@@ -60,6 +60,11 @@ namespace Runed.Voxel
             return BlockManager.BlockDefinitions[id];
         }
 
+        public static int GetNumericalId(string identifier)
+        {
+            return BlockDefinitions.FirstOrDefault(x => x.Value.Identifier == identifier).Key;
+        }
+
         public static string[] Load()
         {
             return new string[] { "0;air" };//{"0;blocktesttwo"}; 

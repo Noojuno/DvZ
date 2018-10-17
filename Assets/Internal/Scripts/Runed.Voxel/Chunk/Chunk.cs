@@ -34,7 +34,6 @@ namespace Runed.Voxel
                 if (this.World.GetAdjacentChunk(this.Position, direction) != null)
                 {
                     this.World.GetAdjacentChunk(this.Position, direction).Dirty = true;
-
                 }
             }
         }
@@ -70,7 +69,7 @@ namespace Runed.Voxel
                 }
 
                 this.Blocks[x, y, z] = value;
-
+                
                 if (x == Chunk.Size - 1 || y == Chunk.Size - 1 || z == Chunk.Size - 1)
                 {
                     //this.RebuildAdjacentChunks();

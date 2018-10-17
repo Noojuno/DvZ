@@ -67,6 +67,21 @@ namespace Runed.Voxel
                     int[] q = new int[3];
                     bool[] mask = new bool[size * size];
 
+                    Direction side = Direction.Left;
+
+                    if (d == 0)
+                    {
+                        side = backFace ? Direction.Left : Direction.Right;
+                    }
+                    else if (d == 1)
+                    {
+                        side = backFace ? Direction.Down : Direction.Up;
+                    }
+                    else if (d == 2)
+                    {
+                        side = backFace ? Direction.Back : Direction.Forward;
+                    }
+
                     q[d] = 1;
 
                     for (x[d] = -1; x[d] < size;)
@@ -77,8 +92,13 @@ namespace Runed.Voxel
                         {
                             for (x[u] = 0; x[u] < size; ++x[u])
                             {
-                                mask[n++] = ((0 <= x[d] && data(chunk, x[0], x[1], x[2])) !=
-                                            (x[d] < size - 1 && data(chunk, x[0] + q[0], x[1] + q[1], x[2] + q[2])));// && chunk[x[0], x[1], x[2]].Definition == chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]].Definition;
+                                var block1 = 0 <= x[d] ? chunk[x[0], x[1], x[2]] : Block.Null;
+                                var block2 = x[d] < size - 1 ? chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]] : Block.Null;
+
+                                var one = (0 <= x[d] && data(chunk, x[0], x[1], x[2]));
+                                var two = (x[d] < size - 1 && data(chunk, x[0] + q[0], x[1] + q[1], x[2] + q[2]));
+
+                                mask[n++] = block1.Definition.Render != block2.Definition.Render;// && chunk[x[0], x[1], x[2]].Definition == chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]].Definition;
                             }
                         }
 
@@ -165,10 +185,11 @@ namespace Runed.Voxel
             meshData.AddVertex(v3);
             meshData.AddVertex(v4);
 
-            meshData.AddUV(new Vector3(1, 0, 0));
             meshData.AddUV(new Vector3(0, 0, 0));
+            meshData.AddUV(new Vector3(1, 0, 0));
             meshData.AddUV(new Vector3(1, 1, 0));
             meshData.AddUV(new Vector3(0, 1, 0));
+
 
             if (back)
             {
