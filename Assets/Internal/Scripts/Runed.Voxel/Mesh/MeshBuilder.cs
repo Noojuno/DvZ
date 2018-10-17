@@ -65,7 +65,7 @@ namespace Runed.Voxel
                     int i, j, k, l, w, h, u = (d + 1) % 3, v = (d + 2) % 3;
                     int[] x = new int[3];
                     int[] q = new int[3];
-                    bool[] mask = new bool[size * size];
+                    int[] mask = new int[size * size];
 
                     Direction side = Direction.Left;
 
@@ -95,10 +95,24 @@ namespace Runed.Voxel
                                 var block1 = 0 <= x[d] ? chunk[x[0], x[1], x[2]] : Block.Null;
                                 var block2 = x[d] < size - 1 ? chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]] : Block.Null;
 
-                                var one = (0 <= x[d] && data(chunk, x[0], x[1], x[2]));
-                                var two = (x[d] < size - 1 && data(chunk, x[0] + q[0], x[1] + q[1], x[2] + q[2]));
+                                var one = (0 <= x[d] && data(chunk, x[0], x[1], x[2])) ? 0 : 1;
+                                var two = (x[d] < size - 1 && data(chunk, x[0] + q[0], x[1] + q[1], x[2] + q[2])) ? 0 : 1;
 
-                                mask[n++] = block1.Definition.Render != block2.Definition.Render;// && chunk[x[0], x[1], x[2]].Definition == chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]].Definition;
+
+                                if ((one != 0) == (two != 0))
+                                {
+                                    mask[n] = 0;
+                                }
+                                else if (one != 0)
+                                {
+                                    mask[n] = one;
+                                }
+                                else
+                                {
+                                    mask[n] = -two;
+                                }
+
+                                n++;
                             }
                         }
 
@@ -111,10 +125,11 @@ namespace Runed.Voxel
                         {
                             for (i = 0; i < size;)
                             {
-                                if (mask[n])
+                                var c = mask[n];
+                                if (c != 0)
                                 {
                                     // Compute width
-                                    for (w = 1; i + w < size && mask[n + w]; ++w) ;
+                                    for (w = 1; i + w < size && mask[n + w] == c; ++w) ;
 
                                     // Compute height (this is slightly awkward
                                     var done = false;
@@ -122,7 +137,7 @@ namespace Runed.Voxel
                                     {
                                         for (k = 0; k < w; ++k)
                                         {
-                                            if (!mask[n + k + h * size])
+                                            if (c != mask[n + k + h * size])
                                             {
                                                 done = true;
                                                 break;
@@ -150,7 +165,7 @@ namespace Runed.Voxel
                                     {
                                         for (k = 0; k < w; ++k)
                                         {
-                                            mask[n + k + l * size] = false;
+                                            mask[n + k + l * size] = 0;
                                         }
                                     }
 
