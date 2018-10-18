@@ -65,8 +65,6 @@ namespace DvZ.Core
             var g = SimplePool.Spawn(this.ChunkPrefab, Vector3.zero, Quaternion.identity);
             g.transform.SetParent(this.WorldTransform);
 
-            WorldManager.Active.TerrainGenerator.Generate(chunk);
-
             g.GetComponent<ChunkRenderer>().Chunk = chunk;
 
             chunk.Dirty = true;

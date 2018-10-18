@@ -40,6 +40,12 @@ namespace Runed.Voxel
         private void BuildChunk()
         {
             this._building = true;
+
+            if (!this.Chunk.Loaded)
+            {
+                WorldManager.Active.TerrainGenerator.Generate(this.Chunk);
+            }
+
             Profiler.BeginSample("Build Chunk " + this.Chunk.Position);
             this.meshData = MeshBuilder.CreateGreedyMesh(this.Chunk);
             Profiler.EndSample();
@@ -48,13 +54,13 @@ namespace Runed.Voxel
 
         void Update()
         {
-            if (this.Chunk != null && this.Chunk.Loaded)
+            if (this.Chunk != null)
             {
                 if (this.Chunk.Dirty && !this._building)
                 {
                     ThreadPool.QueueUserWorkItem(c => BuildChunk());
                 }
-                else if (this.Chunk.Rendered)
+                else if (this.Chunk.Rendered && this.Chunk.Loaded)
                 {
                     this.mesh = this.meshData.ToMesh();
                     this.meshFilter.sharedMesh = this.mesh;
