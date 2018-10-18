@@ -47,7 +47,7 @@ namespace Runed.Voxel
 
             var blockArray = new Texture2DArray(16, 16, Textures.Count, TextureFormat.ARGB32, true);
             blockArray.filterMode = FilterMode.Point;
-            blockArray.wrapMode = TextureWrapMode.Clamp;
+            blockArray.wrapMode = TextureWrapMode.Repeat;
 
             int x = 0;
             for (int i = 0; i < TextureManager.Textures.Count; i++)

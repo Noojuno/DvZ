@@ -95,8 +95,8 @@ namespace Runed.Voxel
                                 var block1 = 0 <= x[d] ? chunk[x[0], x[1], x[2]] : Block.Null;
                                 var block2 = x[d] < size - 1 ? chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]] : Block.Null;
 
-                                var one = (0 <= x[d] && data(chunk, x[0], x[1], x[2])) ? 0 : 1;
-                                var two = (x[d] < size - 1 && data(chunk, x[0] + q[0], x[1] + q[1], x[2] + q[2])) ? 0 : 1;
+                                var one = BlockManager.GetNumericalId(block1.Definition.Identifier);
+                                var two = BlockManager.GetNumericalId(block2.Definition.Identifier);
 
 
                                 if ((one != 0) == (two != 0))
@@ -152,13 +152,16 @@ namespace Runed.Voxel
                                     x[v] = j;
                                     int[] du = new int[3];
                                     int[] dv = new int[3];
-                                    du[u] = w;
+
                                     dv[v] = h;
+                                    du[u] = w;
+
+                                    c = c <= 0 ? -c : c;
 
                                     AddFace(new Vector3(x[0], x[1], x[2]),
                                         new Vector3(x[0] + du[0], x[1] + du[1], x[2] + du[2]),
                                         new Vector3(x[0] + du[0] + dv[0], x[1] + du[1] + dv[1], x[2] + du[2] + dv[2]),
-                                        new Vector3(x[0] + dv[0], x[1] + dv[1], x[2] + dv[2]), backFace, meshData);
+                                        new Vector3(x[0] + dv[0], x[1] + dv[1], x[2] + dv[2]), BlockManager.GetBlock(c), side, w, h, backFace, meshData);
 
                                     // Zero-out mask
                                     for (l = 0; l < h; ++l)
@@ -191,20 +194,20 @@ namespace Runed.Voxel
             return meshData;
         }
 
-        private static void AddFace(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, bool back, MeshData meshData)
+        private static void AddFace(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, BlockDefinition blockDefinition, Direction side, int width, int height, bool back, MeshData meshData)
         {
             int index = meshData.Vertices.Count;
+            int layer = blockDefinition.GetTexture(side).Layer;
 
             meshData.AddVertex(v1);
             meshData.AddVertex(v2);
             meshData.AddVertex(v3);
             meshData.AddVertex(v4);
 
-            meshData.AddUV(new Vector3(0, 0, 0));
-            meshData.AddUV(new Vector3(1, 0, 0));
-            meshData.AddUV(new Vector3(1, 1, 0));
-            meshData.AddUV(new Vector3(0, 1, 0));
-
+            meshData.AddUV(new Vector3(0, 0, layer));
+            meshData.AddUV(new Vector3(width, 0, layer));
+            meshData.AddUV(new Vector3(width, height, layer));
+            meshData.AddUV(new Vector3(0, height, layer));
 
             if (back)
             {
