@@ -72,7 +72,7 @@ namespace Runed.Voxel
                 
                 if (x == Chunk.Size - 1 || y == Chunk.Size - 1 || z == Chunk.Size - 1)
                 {
-                    //this.RebuildAdjacentChunks();
+                    this.RebuildAdjacentChunks();
                 }
 
                 if (dirty)

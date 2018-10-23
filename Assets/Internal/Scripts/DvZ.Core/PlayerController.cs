@@ -15,6 +15,7 @@ namespace DvZ.Core
         [Header("Chunk Loading")]
         public int LoadRadius = 3;
         public Queue<Vector3Int> ChunkQueue = new Queue<Vector3Int>();
+        public Queue<ChunkRenderer> UnloadQueue = new Queue<ChunkRenderer>();
 
         public Transform WorldTransform;
         public GameObject ChunkPrefab;
@@ -70,6 +71,11 @@ namespace DvZ.Core
             chunk.Dirty = true;
 
             this.CurrActive--;
+        }
+
+        public void UnloadLast()
+        {
+
         }
     }
 }

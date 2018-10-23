@@ -106,6 +106,7 @@ namespace Runed.Voxel
             switch (direction)
             {
                 case Direction.Forward:
+                    Debug.Log(position + Vector3.forward + Vector3.left);
                     this.vertices.Add(position + Vector3.forward + Vector3.left);
                     this.vertices.Add(position + Vector3.forward);
                     this.vertices.Add(position + Vector3.forward + Vector3.left + Vector3.up);

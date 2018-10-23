@@ -92,8 +92,13 @@ namespace Runed.Voxel
                         {
                             for (x[u] = 0; x[u] < size; ++x[u])
                             {
-                                var block1 = 0 <= x[d] ? chunk[x[0], x[1], x[2]] : Block.Null;
-                                var block2 = x[d] < size - 1 ? chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]] : Block.Null;
+                                var offset = chunk.Position * Chunk.Size;
+
+                                var block1Pos = new Vector3Int(x[0], x[1], x[2]) + offset;
+                                var block2Pos = new Vector3Int(x[0] + q[0], x[1] + q[1], x[2] + q[2]) + offset;
+
+                                var block1 = WorldManager.Active.GetBlock(block1Pos); // 0 <= x[d] ? WorldManager.Active.GetBlock(new Vecx[0], x[1], x[2]]) : Block.Null;
+                                var block2 = WorldManager.Active.GetBlock(block2Pos); ;//x[d] < size - 1 ? chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]] : Block.Null;
 
                                 var one = BlockManager.GetNumericalId(block1.Definition.Identifier);
                                 var two = BlockManager.GetNumericalId(block2.Definition.Identifier);
@@ -199,10 +204,31 @@ namespace Runed.Voxel
             int index = meshData.Vertices.Count;
             int layer = blockDefinition.GetTexture(side).Layer;
 
-            meshData.AddVertex(v1);
-            meshData.AddVertex(v2);
-            meshData.AddVertex(v3);
-            meshData.AddVertex(v4);
+            switch (side)
+            {
+                case Direction.Back:
+                case Direction.Forward:
+                    meshData.AddVertex(v3);
+                    meshData.AddVertex(v4);
+                    meshData.AddVertex(v1);
+                    meshData.AddVertex(v2);
+                    break;
+                case Direction.Left:
+                case Direction.Right:
+                    meshData.AddVertex(v4);
+                    meshData.AddVertex(v1);
+                    meshData.AddVertex(v2);
+                    meshData.AddVertex(v3);
+                    break;
+
+                default:
+                    Debug.Log($"{v1} {v2} {v3} {v4} {side}");
+                    meshData.AddVertex(v3);
+                    meshData.AddVertex(v1);
+                    meshData.AddVertex(v2);
+                    meshData.AddVertex(v4);
+                    break;
+            }
 
             meshData.AddUV(new Vector3(0, 0, layer));
             meshData.AddUV(new Vector3(width, 0, layer));
