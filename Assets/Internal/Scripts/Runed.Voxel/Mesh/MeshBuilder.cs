@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
+using UnityEngine.Profiling;
 
 namespace Runed.Voxel
 {
@@ -58,6 +60,12 @@ namespace Runed.Voxel
 
             int size = Chunk.Size;
 
+            var world = chunk.World;
+            var offset = chunk.Position * Chunk.Size;
+
+            Block block1;
+            Block block2;
+
             for (bool backFace = true, b = false; b != backFace; backFace = backFace && b, b = !b)
             {
                 for (int d = 0; d < 3; d++)
@@ -83,7 +91,6 @@ namespace Runed.Voxel
                     }
 
                     q[d] = 1;
-
                     for (x[d] = -1; x[d] < size;)
                     {
                         // Compute the mask
@@ -92,13 +99,11 @@ namespace Runed.Voxel
                         {
                             for (x[u] = 0; x[u] < size; ++x[u])
                             {
-                                var offset = chunk.Position * Chunk.Size;
-
                                 var block1Pos = new Vector3Int(x[0], x[1], x[2]) + offset;
                                 var block2Pos = new Vector3Int(x[0] + q[0], x[1] + q[1], x[2] + q[2]) + offset;
 
-                                var block1 = WorldManager.Active.GetBlock(block1Pos); // 0 <= x[d] ? WorldManager.Active.GetBlock(new Vecx[0], x[1], x[2]]) : Block.Null;
-                                var block2 = WorldManager.Active.GetBlock(block2Pos); ;//x[d] < size - 1 ? chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]] : Block.Null;
+                                block1 = world.GetBlock(block1Pos); // 0 <= x[d] ? WorldManager.Active.GetBlock(new Vecx[0], x[1], x[2]]) : Block.Null;
+                                block2 = world.GetBlock(block2Pos);//x[d] < size - 1 ? chunk[x[0] + q[0], x[1] + q[1], x[2] + q[2]] : Block.Null;
 
                                 var one = BlockManager.GetNumericalId(block1.Definition.Identifier);
                                 var two = BlockManager.GetNumericalId(block2.Definition.Identifier);
@@ -204,36 +209,25 @@ namespace Runed.Voxel
             int index = meshData.Vertices.Count;
             int layer = blockDefinition.GetTexture(side).Layer;
 
-            switch (side)
+            meshData.AddVertex(v1);
+            meshData.AddVertex(v2);
+            meshData.AddVertex(v3);
+            meshData.AddVertex(v4);
+
+            if (side == Direction.Forward || side == Direction.Back)
             {
-                case Direction.Back:
-                case Direction.Forward:
-                    meshData.AddVertex(v3);
-                    meshData.AddVertex(v4);
-                    meshData.AddVertex(v1);
-                    meshData.AddVertex(v2);
-                    break;
-                case Direction.Left:
-                case Direction.Right:
-                    meshData.AddVertex(v4);
-                    meshData.AddVertex(v1);
-                    meshData.AddVertex(v2);
-                    meshData.AddVertex(v3);
-                    break;
-
-                default:
-                    Debug.Log($"{v1} {v2} {v3} {v4} {side}");
-                    meshData.AddVertex(v3);
-                    meshData.AddVertex(v1);
-                    meshData.AddVertex(v2);
-                    meshData.AddVertex(v4);
-                    break;
+                meshData.AddUV(new Vector3(0, 0, layer));
+                meshData.AddUV(new Vector3(width, 0, layer));
+                meshData.AddUV(new Vector3(width, height, layer));
+                meshData.AddUV(new Vector3(0, height, layer));
             }
-
-            meshData.AddUV(new Vector3(0, 0, layer));
-            meshData.AddUV(new Vector3(width, 0, layer));
-            meshData.AddUV(new Vector3(width, height, layer));
-            meshData.AddUV(new Vector3(0, height, layer));
+            else
+            {
+                meshData.AddUV(new Vector3(0, 0, layer));
+                meshData.AddUV(new Vector3(0, width, layer));
+                meshData.AddUV(new Vector3(height, width, layer));
+                meshData.AddUV(new Vector3(height, 0, layer));
+            }
 
             if (back)
             {
@@ -254,11 +248,6 @@ namespace Runed.Voxel
             meshData.AddTriangle(0, index + 2);
             meshData.AddTriangle(0, index + 3);
             meshData.AddTriangle(0, index);
-        }
-
-        private static bool data(Chunk chunk, int x, int y, int z)
-        {
-            return chunk[x, y, z].Definition.Render;
         }
     }
 }

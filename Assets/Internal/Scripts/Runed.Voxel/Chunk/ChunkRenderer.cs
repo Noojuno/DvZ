@@ -25,8 +25,6 @@ namespace Runed.Voxel
             this.meshRenderer = this.GetComponent<MeshRenderer>();
             this.meshCollider = this.GetComponent<MeshCollider>();
             this.meshRenderer.material.mainTexture = TextureManager.BlockArray;
-            //this.meshRenderer.materials[1].mainTexture = TextureManager.BlockArray;
-            //this.meshRenderer.material.SetTexture("_Textures", TextureManager.BlockArray);
 
             this.mesh = new Mesh();
 
@@ -44,11 +42,9 @@ namespace Runed.Voxel
                 WorldManager.Active.TerrainGenerator.Generate(this.Chunk);
             }
 
-            Profiler.BeginSample("Build Chunk " + this.Chunk.Position);
-            //Debug.Log(this.Chunk.Position +  " Building: " + this._building + " Dirty: " + this.Chunk.Dirty + " Rrendered: " + this.Chunk.Rendered + " Loaded: " + this.Chunk.Loaded);
-
+            //Profiler.BeginSample("Build Chunk " + this.Chunk.Position);
             this.meshData = MeshBuilder.CreateGreedyMesh(this.Chunk);
-            Profiler.EndSample();
+            //Profiler.EndSample();
             this._building = false;
         }
 
